@@ -1,0 +1,9 @@
+nav{
+    background-color: #ED028C;
+    min-height: 80px;
+    text-align: right;
+}
+
+nav a {
+    padding: 5px 20px;
+}

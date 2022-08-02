@@ -1,0 +1,42 @@
+// import React from "react";
+// import {Outlet} from "react-router-dom";
+// import Navbar from "../components/NavBar";
+// import './App.css';
+
+// function AppLayout() {
+//   return (
+//     <>
+      
+//     </>
+//   );
+// }
+
+// export default AppLayout;
+
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Vote from "./pages/Vote";
+import Results from "./pages/Results";
+import SignUp from "./pages/SignUp"
+import NoPage from "./pages/NoPage";
+import './index.css';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="vote" element={<Vote />} />
+          <Route path="results" element={<Results />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// ReactDOM.render(<App />, document.getElementById("root"));

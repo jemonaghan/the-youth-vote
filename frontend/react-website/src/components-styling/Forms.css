@@ -1,0 +1,153 @@
+body{
+    background-image: url("../../public/media/squiggle-abstract-vector-bw.jpg");
+}
+
+.form-container{
+    width: 80%;
+    min-height: 400px;
+    height: fit-content;
+    margin: 60px auto auto auto;
+    /* background-color: black; */
+    background-color: #282c34;
+    /* background-image: linear-gradient(to left top, #282c34, #282a30, #27272b, #252527, #232323); */
+    color: whitesmoke;
+    position: relative;
+}
+
+.form-container .header{
+    min-height: 50px;
+    width: 100%;
+}
+
+.form-container .header h1{
+    padding-left: 10px;
+}
+
+.form-container .body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px 80px 20px;
+}
+
+.form-container .body h2{
+    flex: 100%;
+    margin: 20px 0 40px 0;
+}
+
+.form-container .body input{
+    margin: 0 auto;
+    display: block;
+}
+
+.form-container .body .party-choices{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.form-container .footer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.form-container .footer-headers{
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.sign-up-form .header{
+    background-color: #00CCFF;
+}
+
+.voting-form .header{
+    background-color: orange;
+}
+
+.inactive{
+    opacity: 50%;
+}
+
+.top-header-inactive{
+    background-color: rgba(255, 166, 0, 0.5);
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.bottom-header-inactive{
+    background-color: rgba(255, 166, 0, 0.5);
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
+/* vote form */
+.vote-form .header{
+    width: 100%;
+    background-color: #FF8702;
+}
+
+
+
+/* all below can be deleted (I think) */
+.demo-header{
+    min-height: 50px;
+    background-color: aquamarine;
+    display: block;
+    width: 100%;
+
+}
+
+.vote-heading{
+    padding: 5px 20px;
+    background-color: blue;
+}
+
+.vote-content{
+    text-align: center;
+    /* height: 0; */
+}
+
+.active{
+    height: auto;
+    background-color: red;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.active{
+    background-color: #666;
+    color: white;
+}
+
+.active .vote-content{
+    height: auto;
+}
+
+.btn:hover{
+    background-color: rgb(4, 211, 83);
+}
+
+.w3-hide{
+    display:none!important
+}
+
+.w3-show{
+    display:block!important
+}
