@@ -5,9 +5,8 @@ import { motion } from "framer-motion";
 function Age({formData, setFormData, page, setPage}) {
   
     function handleOnClick2 () {
-        // setFormData({ ...formData, postcode: input });
         setPage(page + 1)
-        console.log(formData)
+        // console.log(formData)
     }
 
     return (
