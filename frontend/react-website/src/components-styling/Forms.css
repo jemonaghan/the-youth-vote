@@ -1,5 +1,5 @@
 body{
-    background-image: url("../../public/media/squiggle-abstract-vector-bw.jpg");
+    background-image: url("../../media/squiggle-abstract-vector-bw.jpg");
 }
 
 .form-container{
@@ -17,6 +17,14 @@ body{
 .form-container .header{
     min-height: 50px;
     width: 100%;
+}
+
+.sign-up-form .header{
+    background-color: #00CCFF;
+}
+
+.vote-form .header{
+    background-color: #FF8702;
 }
 
 .form-container .header h1{
@@ -47,7 +55,6 @@ body{
     flex-direction: row;
 }
 
-
 .form-container .footer{
     display: flex;
     justify-content: center;
@@ -64,90 +71,6 @@ body{
     bottom: 0;
 }
 
-.sign-up-form .header{
-    background-color: #00CCFF;
-}
-
-.voting-form .header{
-    background-color: orange;
-}
-
 .inactive{
     opacity: 50%;
-}
-
-.top-header-inactive{
-    background-color: rgba(255, 166, 0, 0.5);
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.bottom-header-inactive{
-    background-color: rgba(255, 166, 0, 0.5);
-    position: static;
-    bottom: 0;
-    width: 100%;
-}
-
-/* vote form */
-.vote-form .header{
-    width: 100%;
-    background-color: #FF8702;
-}
-
-
-
-/* all below can be deleted (I think) */
-.demo-header{
-    min-height: 50px;
-    background-color: aquamarine;
-    display: block;
-    width: 100%;
-
-}
-
-.vote-heading{
-    padding: 5px 20px;
-    background-color: blue;
-}
-
-.vote-content{
-    text-align: center;
-    /* height: 0; */
-}
-
-.active{
-    height: auto;
-    background-color: red;
-}
-
-.btn {
-    border: none;
-    outline: none;
-    padding: 10px 16px;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.active{
-    background-color: #666;
-    color: white;
-}
-
-.active .vote-content{
-    height: auto;
-}
-
-.btn:hover{
-    background-color: rgb(4, 211, 83);
-}
-
-.w3-hide{
-    display:none!important
-}
-
-.w3-show{
-    display:block!important
 }

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import EnterPollCard from "./EnterPollCard";
 import Age from "./Age";
 import VoteChoice from "./VoteChoice";
+import ConfirmChoice from "./ConfirmChoice";
 import VoteThankYou from "./ThankYou";
 import RepeatVote from "./Repeat";
 
@@ -18,7 +19,7 @@ function VotingForm () {
       voteChoice: null,
     });
 
-    const PageTitles = ["Sorry", "Step 1: Poll Card", "Step 2: Age", "Step 3: Vote", "Check Details"];
+    const PageTitles = ["Sorry", "Step 1: Poll Card", "Step 2: Age", "Step 3: Vote", "Check Details", "Thank You"];
 
     const PageDisplay = () => {
         if (page === 0) {
@@ -37,6 +38,10 @@ function VotingForm () {
             return <VoteChoice 
             formData={formData} setFormData={setFormData} 
             page={page} setPage={setPage}/>;
+        } else if (page === 4) {
+          return <ConfirmChoice 
+          formData={formData} setFormData={setFormData} 
+          page={page} setPage={setPage}/>;
         } else {
           return <VoteThankYou formData={formData} setFormData={setFormData} />;
         }

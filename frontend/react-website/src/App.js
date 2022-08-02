@@ -1,18 +1,3 @@
-// import React from "react";
-// import {Outlet} from "react-router-dom";
-// import Navbar from "../components/NavBar";
-// import './App.css';
-
-// function AppLayout() {
-//   return (
-//     <>
-      
-//     </>
-//   );
-// }
-
-// export default AppLayout;
-
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
@@ -36,6 +21,7 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+
   );
 }
 

@@ -30,8 +30,8 @@ function Form() {
     };
   
     return (
-      <div className="sign-up-form">
-        <div className="form-container">
+      <div className="form-container">
+        <div className="sign-up-form">
           <div className="header">
             <h1>{FormTitles[page]}</h1>
           </div>
