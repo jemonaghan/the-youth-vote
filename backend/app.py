@@ -35,7 +35,7 @@ def get_info(information):
     return jsonify(res)
 
 
-@app.route("/school")
+@app.route("/school/find")
 def get_school():
     query = request.args.get('v')
     schools_by_postcode = get_school_info(query, 'address.postcode')
