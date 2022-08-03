@@ -1,3 +1,4 @@
+from distutils.log import error
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from db_utils import get_voter_info
@@ -46,11 +47,12 @@ def pollcard_check(pollcard_id):
         if matching_pollcard(pollcard_id, pollcard) and not has_voted(pollcard):
             return success({ 'hasVoted': False })
 
-
+        if matching_pollcard(pollcard_id, pollcard) and has_voted(pollcard):
+            return error('This pollcard has already been used', 400)
 
 
 def has_voted(pollcard):
-    return pollcard['vote'] != None
+    return pollcard['vote'] is not None
 
 
 
@@ -74,7 +76,7 @@ def get_school():
 
 
 def error(message, status_code):
-    Response(json.dumps({ 'message': message }), status=status_code, mimetype='application/json')
+    return Response(json.dumps({ 'message': message }), status=status_code, mimetype='application/json')
 
 def success(data):
     return Response(json.dumps(data), status=200, mimetype='application/json')
