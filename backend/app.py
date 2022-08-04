@@ -1,3 +1,4 @@
+from distutils.log import error
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from db_utils import get_voter_info
@@ -14,6 +15,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+pollcards = [
+    {'id': '123', 'urn': '123456', 'vote': 1 },
+    {'id': '123', 'urn': '789123', 'vote': 1 },
+    {'id': '124', 'urn': '789123', 'vote': None }
+]
 
 @app.route("/")
 def homepage():    
@@ -35,6 +41,31 @@ def get_info(information):
     return jsonify(res)
 
 
+@app.route("/voter/pollcard/<pollcard_id>")
+def pollcard_check(pollcard_id):
+    for pollcard in pollcards:
+        if matching_pollcard(pollcard_id, pollcard) and not has_voted(pollcard):
+            return success({ 'hasVoted': False })
+
+        if matching_pollcard(pollcard_id, pollcard) and has_voted(pollcard):
+            return error('This pollcard has already been used', 400)
+
+    return error("A pollcard with this number cannot be found", 404)
+
+
+def has_voted(pollcard):
+    return pollcard['vote'] is not None
+
+
+
+def matching_pollcard(pollcard_id, pollcard):
+    urn = pollcard_id[0:6]
+    id = pollcard_id[6:9]
+    return pollcard['id'] == id and pollcard['urn'] == urn
+
+
+
+
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
@@ -43,14 +74,14 @@ def get_school():
     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)
-    return success(json.dumps(data))
+    return success(data)
 
 
 def error(message, status_code):
-    Response(json.dumps({ 'message': message }), status=status_code, mimetype='application/json')
+    return Response(json.dumps({ 'message': message }), status=status_code, mimetype='application/json')
 
 def success(data):
-    return Response(data, status=200, mimetype='application/json')
+    return Response(json.dumps(data), status=200, mimetype='application/json')
 
 def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
