@@ -9,63 +9,82 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:'NANOdegree22'@localhost/tutorial"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 
 db = SQLAlchemy(app)
 
-pollcards = [
-    {'id': '123', 'urn': '123456', 'vote': 1 },
-    {'id': '123', 'urn': '789123', 'vote': 1 },
-    {'id': '124', 'urn': '789123', 'vote': None }
-]
-
-@app.route("/")
-def homepage():    
-    return "This is the homepage"
 
 
-@app.route("/voters")
-def voters():
-    voter_data = {
-        "voters":[
-            {1:"voter1", 2:"voter2", 3:"voter3", 4:"voter4"}
-        ]}    
-    return jsonify(voter_data)
+# take number of pollcards and send to db
+
+@app.route("/school/register", methods = ['POST'])
+def create_pollcard():
+    if request.method == 'POST':
+        json_data = request.json
+        # addData = pollcard(url=json_data.get('url'), numberOfPollcards=json_data.get('number_pollcards'))
+        for id in range(json_data.get('numberOfPollcards')):
+            # print(id)
+            addData = Pollcards(school_urn=json_data.get('urn'), voter_ID=get_id(id))
+            db.session.add(addData)
+            db.session.commit()
+    return success("Pollcards created")#download of pollcards needed
+
+def get_id(id, required_length=4):
+    id = str(id+1)
+    length = len(id)
+    zeros_needed = required_length - length
+    zero = "0" * zeros_needed
+    return zero + id 
+    
+    
+
+class Pollcards(db.Model):
+    school_urn = db.Column(db.String(6), primary_key=True)
+    voter_ID = db.Column(db.Integer, primary_key=True)
+    vote = db.Column(db.Integer, primary_key=False)
+
+    def __repr__(self):
+        return '<Pollcards %r>' % self.school_urn + self.voter_ID
 
 
-@app.route("/voter-info")
-def get_info(information):
-    res = get_voter_info(information)
-    return jsonify(res)
+@app.route("/voter/vote", methods = ['POST'])
+def vote():
+    return success("Vote submitted")
 
 
+
+#backend route to check if pollcard number has been created and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
-    for pollcard in pollcards:
-        if matching_pollcard(pollcard_id, pollcard) and not has_voted(pollcard):
-            return success({ 'hasVoted': False })
+    
+    pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
+    
+    if matching_pollcard(pollcard) and not has_voted(pollcard):
+        return success({ 'hasVoted': False })
 
-        if matching_pollcard(pollcard_id, pollcard) and has_voted(pollcard):
-            return error('This pollcard has already been used', 400)
+    if matching_pollcard(pollcard) and has_voted(pollcard):
+        return error('This pollcard has already been used', 400)
 
     return error("A pollcard with this number cannot be found", 404)
 
+def matching_pollcard(pollcard):
+    return pollcard is not None
 
 def has_voted(pollcard):
-    return pollcard['vote'] is not None
+    return pollcard.vote is not None 
+
+def get_urn(pollcard_id):
+    return pollcard_id[0:6]
+
+def get_voter_id(pollcard_id):
+    return pollcard_id[6:10]
 
 
 
-def matching_pollcard(pollcard_id, pollcard):
-    urn = pollcard_id[0:6]
-    id = pollcard_id[6:9]
-    return pollcard['id'] == id and pollcard['urn'] == urn
 
 
-
-
+#external API route to retrieve Schools information. Returns urn, address, name of school
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
@@ -76,7 +95,7 @@ def get_school():
         return error('Schools not found!', 404)
     return success(data)
 
-
+#error or success functions
 def error(message, status_code):
     return Response(json.dumps({ 'message': message }), status=status_code, mimetype='application/json')
 
@@ -85,6 +104,7 @@ def success(data):
 
 def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
