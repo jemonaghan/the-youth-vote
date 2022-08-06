@@ -5,9 +5,8 @@ import { motion } from "framer-motion";
 function Age({formData, setFormData, page, setPage}) {
   
     function handleOnClick2 () {
-        // setFormData({ ...formData, postcode: input });
         setPage(page + 1)
-        console.log(formData)
+        // console.log(formData)
     }
 
     return (
@@ -17,7 +16,7 @@ function Age({formData, setFormData, page, setPage}) {
             </div>
             <motion.div className='header'
                 animate={{ y: 0}}
-                initial={{ y: 250}}
+                initial={{ y: 270}}
                 transition={{delay: 0.2}}>
                 <h1>Step 2: Age</h1>
             </motion.div>

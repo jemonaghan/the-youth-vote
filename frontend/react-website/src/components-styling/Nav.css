@@ -1,8 +1,13 @@
 nav{
     background-color: #ED028C;
-    min-height: 80px;
+    height: 80px;
     text-align: right;
 }
+
+nav li{
+    display: inline-block;
+}
+
 
 nav a {
     padding: 5px 20px;

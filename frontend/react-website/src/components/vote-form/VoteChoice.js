@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { motion } from "framer-motion";
+
+import Image from "../../images/green-party-logo.png";
 
 function VoteChoice({formData, setFormData, page, setPage}) {
   
@@ -12,15 +14,15 @@ function VoteChoice({formData, setFormData, page, setPage}) {
     return (
         <div>
             <div className='header inactive'>
-                <h1>Step 1: Poll Card</h1>
+              <h1>Step 1: Poll Card</h1>
             </div>
             <div className='header inactive'>
-                <h1>Step 2: Age</h1>
+              <h1>Step 2: Age</h1>
             </div>
             <motion.div className='header'
-                animate={{ y: 0}}
-                initial={{ y: 250}}
-                transition={{delay: 0.2}}>
+              animate={{ y: 0}}
+              initial={{ y: 250}}
+              transition={{delay: 0.2}}>
                 <h1>Step 3: Vote</h1>
             </motion.div>
 
@@ -31,7 +33,7 @@ function VoteChoice({formData, setFormData, page, setPage}) {
                 <h2>Select the Party You Would Like to Vote For</h2>
               <div className='party-choices'>
                 <div>
-                  Labour
+                  <img src={Image} width={100}/>
                 </div>
                 <div>
                   Green

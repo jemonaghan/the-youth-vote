@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
-import voterInfo from "../../utils/voterdata.json"
+
+import ContinueButton from '../continue-button/ContinueButton';
+import voterInfo from "../../data/voterdata.json";
 
 // poll card num for testing
 // 110907-000000
@@ -14,6 +16,8 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
     const voterData2 = voterInfo.data.map(({ vote }) =>  vote);
     const voterChoice = voterData2.toString();
+
+    const buttonText = "Continue"
 
     function continueForward () {
         
@@ -53,25 +57,27 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
                         setFormData({ ...formData, pollCardNum: event.target.value })
                         }
                 />
-
-                <button onClick={continueForward}>
+                
+                <ContinueButton onClick={continueForward} buttonLabel = {buttonText}>
+                    </ContinueButton>
+                {/* <button onClick={continueForward}>
                     Continue
-                </button>
+                </button> */}
                 {/* </form> */}
             <p>{errorMessage}</p>
             </motion.div>
 
-            <motion.div className='footer-headers'
-                animate={{ y: 0}}
-                initial={{ y: -250}}
-                transition={{delay: 0.6}}>
+            <div className='footer-headers'>
+                {/* // animate={{ y: 0}} */}
+                {/* // initial={{ y: -250}} */}
+                {/* // transition={{delay: 0.6}}> */}
                 <div className='header inactive'>
                     <h1>Step 2: Age</h1>
                 </div>
                 <div className='header inactive'>
                     <h1>Step 3: Vote</h1>
                 </div>
-            </motion.div>
+            </div>
         </div>
   );
 }
