@@ -1,11 +1,13 @@
-import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Vote from "./pages/Vote";
 import Results from "./pages/Results";
 import SignUp from "./pages/SignUp"
 import NoPage from "./pages/NoPage";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 export default function App() {
@@ -25,4 +27,3 @@ export default function App() {
   );
 }
 
-// ReactDOM.render(<App />, document.getElementById("root"));

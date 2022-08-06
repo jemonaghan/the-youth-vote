@@ -16,7 +16,7 @@ function Age({formData, setFormData, page, setPage}) {
             </div>
             <motion.div className='header'
                 animate={{ y: 0}}
-                initial={{ y: 250}}
+                initial={{ y: 270}}
                 transition={{delay: 0.2}}>
                 <h1>Step 2: Age</h1>
             </motion.div>

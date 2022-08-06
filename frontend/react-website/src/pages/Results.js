@@ -2,7 +2,9 @@ import React from 'react';
   
 const Results = () => {
   return (
-    <h1>The RESULTS ARE IN!</h1>
+    <div class="results-page">
+      <h1>The RESULTS ARE IN!</h1>
+    </div>
   );
 };
   

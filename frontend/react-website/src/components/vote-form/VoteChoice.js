@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { motion } from "framer-motion";
+
+import Image from "../../images/green-party-logo.png";
 
 function VoteChoice({formData, setFormData, page, setPage}) {
   
@@ -31,7 +33,7 @@ function VoteChoice({formData, setFormData, page, setPage}) {
                 <h2>Select the Party You Would Like to Vote For</h2>
               <div className='party-choices'>
                 <div>
-                  Labour
+                  <img src={Image} width={100}/>
                 </div>
                 <div>
                   Green

@@ -1,6 +1,6 @@
 import "../../components-styling/Forms.css";
 
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 
 import EnterPollCard from "./EnterPollCard";
@@ -19,7 +19,7 @@ function VotingForm () {
       voteChoice: null,
     });
 
-    const PageTitles = ["Sorry", "Step 1: Poll Card", "Step 2: Age", "Step 3: Vote", "Check Details", "Thank You"];
+    // const PageTitles = ["Sorry", "Step 1: Poll Card", "Step 2: Age", "Step 3: Vote", "Check Details", "Thank You"];
 
     const PageDisplay = () => {
         if (page === 0) {
