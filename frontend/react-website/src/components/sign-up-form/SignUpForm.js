@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
+import axios from "axios";
 
 import SchoolEnter from './SchoolEnter';
 import SchoolResults from './SchoolResults';
@@ -49,6 +50,11 @@ function Form() {
               onClick={() => {
                 if (page === FormTitles.length - 1) {
                   alert("FORM SUBMITTED");
+                  axios({
+                    method: 'post',
+                    url: 'https://localhost:5000/school/register',
+                    data: {formData}
+                  });
                   console.log(formData);
                 } else {
                   setPage((currPage) => currPage + 1);

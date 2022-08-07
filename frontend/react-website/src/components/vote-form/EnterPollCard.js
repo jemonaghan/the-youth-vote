@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 
-import ContinueButton from '../continue-button/ContinueButton';
+import ContinueButton from '../buttons/ContinueButton';
 import voterInfo from "../../data/voterdata.json";
 
 // poll card num for testing
@@ -16,8 +16,6 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
     const voterData2 = voterInfo.data.map(({ vote }) =>  vote);
     const voterChoice = voterData2.toString();
-
-    const buttonText = "Continue"
 
     function continueForward () {
         
@@ -58,13 +56,13 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
                         }
                 />
                 
-                <ContinueButton onClick={continueForward} buttonLabel = {buttonText}>
+                <ContinueButton onClick={continueForward} buttonLabel = "Continue">
                     </ContinueButton>
                 {/* <button onClick={continueForward}>
                     Continue
                 </button> */}
                 {/* </form> */}
-            <p>{errorMessage}</p>
+            <p>(For testing) - 110907-000000{errorMessage}</p>
             </motion.div>
 
             <div className='footer-headers'>
