@@ -7,7 +7,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
@@ -24,7 +23,7 @@ function SchoolResults({formData, setFormData, page, setPage}) {
     // at the minute using a useFetch to get data from database but could use axios
 
     // using api in app.py
-    const{ data, loading, error } = useFetch("https://localhost:5000/school/find" + formData.schoolSearch);
+    const{ data, loading, error } = useFetch("https://localhost:5000/school/find/" + formData.schoolSearch);
 
     // direct to external api
     // const{ data, loading, error } = useFetch("https://api.maptivo.co.uk/schools?address.postcode=bl4");
@@ -32,10 +31,10 @@ function SchoolResults({formData, setFormData, page, setPage}) {
     if (loading) return <h1>LOADING...</h1>;
     if (error) console.log(error);
 
-    // const apiData = data.data
+    let apiData = data.data
 
     console.log(formData.schoolSearch)
-    console.log(`api: ${data}`)
+    console.log(`api: ${apiData}`)
 
     const schools = schoolsData.data.map(({ name }) => name)
 

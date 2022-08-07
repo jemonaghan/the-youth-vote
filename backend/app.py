@@ -9,12 +9,19 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+# jemilla config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
+# joanne config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
+# check the connection is working
+@app.route("/")
+def api_homepage():
+    return ("Welcome to the api")
 
 # take number of pollcards and send to db
 

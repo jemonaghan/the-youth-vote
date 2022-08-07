@@ -1,4 +1,4 @@
-import "../components-styling/Nav.css"
+import "../components-styling/NavBar.css"
 
 import React from "react";
 import { Link } from "react-router-dom";

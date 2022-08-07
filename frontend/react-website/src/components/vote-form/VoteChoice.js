@@ -48,16 +48,17 @@ function VoteChoice({formData, setFormData, page, setPage}) {
     return (
         <div>
             <div className='header inactive'>
-              <h1>Step 1: Poll Card</h1>
+                <h1>Step 1: Poll Card</h1>
             </div>
             <div className='header inactive'>
-              <h1>Step 2: Age</h1>
+                <h1>Step 2: Age</h1>
             </div>
 
             <motion.div className='header'
-              animate={{ y: 0 }}
-              initial={{ y: 320 }}
-              transition={{ delay: 0.2 }}>
+                animate={{ y: 0 }}
+                initial={{ y: 380 }}
+                transition={{ delay: 0.2, type: "inertia " }}
+            >
                 <h1>Step 3: Vote</h1>
             </motion.div>
 
