@@ -1,0 +1,14 @@
+nav{
+    background-color: #ED028C;
+    height: 80px;
+    text-align: right;
+}
+
+nav li{
+    display: inline-block;
+}
+
+
+nav a {
+    padding: 5px 20px;
+}
