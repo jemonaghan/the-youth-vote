@@ -16,7 +16,7 @@ function VotingForm () {
     const [formData, setFormData] = useState({
       pollCardNum: "",
       age: 0,
-      voteChoice: null,
+      voteChoice: "",
     });
 
     // const PageTitles = ["Sorry", "Step 1: Poll Card", "Step 2: Age", "Step 3: Vote", "Check Details", "Thank You"];
