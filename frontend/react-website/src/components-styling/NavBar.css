@@ -1,14 +1,38 @@
 nav{
     background-color: #ED028C;
-    height: 80px;
+    min-height: 80px;
     text-align: right;
 }
-
-nav li{
-    display: inline-block;
-}
-
 
 nav a {
     padding: 5px 20px;
 }
+
+.navbar-logo {
+    text-decoration: none;
+    font-size: 16pt;
+    font-weight: bold;
+    color: black;
+}
+
+.navbar-logo:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}
+
