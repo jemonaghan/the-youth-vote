@@ -38,6 +38,7 @@
     align-items: center;
     text-align: center;
     padding: 10px 20px 60px 20px;
+    position: relative;
 }
 
 .form-container .body h2{
@@ -52,7 +53,7 @@
 }
 
 .form-container .body p{
-    margin-top: 1.4rem;
+    margin: 0.6rem;
 }
 
 .form-container .body .party-choices{
@@ -60,6 +61,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.form-container .body .back{
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}
+
+.party-choices a{
+    opacity: 0.8;
+}
+
+.party-choices a:hover{
+    opacity: 1;
 }
 
 .form-container .footer{

@@ -1,12 +1,19 @@
 import React from 'react'
 import { motion } from "framer-motion";
 
+import ContinueButton from '../buttons/ContinueButton';
+import BackButton from '../buttons/BackButton';
+
 
 function Age({formData, setFormData, page, setPage}) {
   
-    function handleOnClick2 () {
+    function continueForward () {
         setPage(page + 1)
         // console.log(formData)
+    }
+
+    function goBack () {
+        setPage(page - 1)
     }
 
     return (
@@ -34,10 +41,12 @@ function Age({formData, setFormData, page, setPage}) {
                     setFormData({ ...formData, age: event.target.value })
                     }
             />
-            <button onClick={handleOnClick2}>
-                Continue
-            </button>
+
+            < ContinueButton onClick={continueForward} buttonLabel="Continue"/>
             </form>
+            <div className='back'>
+                <BackButton onClick={goBack} buttonLabel="< Back"/>
+            </div>
             </motion.div>
 
             <div className='footer-headers'>

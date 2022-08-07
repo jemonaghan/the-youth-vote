@@ -6,9 +6,11 @@ import Vote from "./pages/Vote";
 import Results from "./pages/Results";
 import SignUp from "./pages/SignUp"
 import NoPage from "./pages/NoPage";
+import LearnMore from "./pages/Learn";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+
 
 export default function App() {
   return (
@@ -19,6 +21,7 @@ export default function App() {
           <Route path="vote" element={<Vote />} />
           <Route path="results" element={<Results />} />
           <Route path="sign-up" element={<SignUp />} />
+          <Route path="learn-more" element={<LearnMore />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

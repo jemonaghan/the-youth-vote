@@ -1,9 +1,12 @@
+
 import  '../components-styling/Footer.css';
 import React from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+
 function Footer() {
+  
   return (
    
      <footer className='footer--pin' role ='navigation'>

@@ -1,0 +1,53 @@
+#homepage{
+	background-color: #232323;
+    color: whitesmoke;
+	min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#homepage h1{
+    font-family: 'Rubik Glitch', cursive;
+}
+
+#homepage div{
+    min-height: 20vh;
+    width: 100%;
+    position: relative;
+}
+
+#homepage #heading{
+    background-color: black;
+    background-image: url("../../media/squiggle-bg.jpg");
+    background-attachment: fixed;
+}
+
+#homepage #vote{
+    background-image: url("../../media/voting-hands.jpg");
+    /* min-height: 200px; */
+    background-attachment: fixed;
+    background-position: 50% 70%;
+    background-repeat: no-repeat;
+    background-size: 100vmax auto;
+    height: 20vmax;
+}
+
+#homepage #sign-up{
+    background-image: url("../../media/voting-ballot-box.jpg");
+    /* min-height: 200px; */
+    background-attachment: fixed;
+    /* background-position: 50% 40%; */
+    background-repeat: no-repeat;
+    background-size: 100vmax auto;
+    height: 20vmax;
+}
+
+#homepage .text-box{
+    padding: 3rem 1rem;
+}
+
+#homepage .text-box p{
+    max-width: 600px;
+    margin: auto;
+}
