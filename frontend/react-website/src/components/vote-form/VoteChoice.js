@@ -31,6 +31,9 @@ function VoteChoice({formData, setFormData, page, setPage}) {
     function continueForward () {
         if (buttonText === 'VOTE!') {
             setFormData({ ...formData, voteChoice: voteValue })
+
+            // need axios here to send formData to database
+
             setPage(page + 1)
 
         } else {
@@ -50,6 +53,7 @@ function VoteChoice({formData, setFormData, page, setPage}) {
             <div className='header inactive'>
               <h1>Step 2: Age</h1>
             </div>
+
             <motion.div className='header'
               animate={{ y: 0 }}
               initial={{ y: 320 }}
@@ -60,30 +64,31 @@ function VoteChoice({formData, setFormData, page, setPage}) {
             <motion.div className='body'
                 animate={{ opacity: 1 }}
                 initial={{ opacity: 0 }}
-                transition={{ delay: 0.4 }}>
+                transition={{ delay: 0.4 }}
+            >
                 <h2>Select the Party You Would Like to Vote For</h2>
-              <div className='party-choices'>
                 
-                <div className="selection">
-                    <a onClick={selectPartyGreen}><img src={greenLogo} width={100} alt="green party logo" /></a>
+                <div className='party-choices'>
+                    <div className="selection">
+                        <a onClick={selectPartyGreen}><img src={greenLogo} width={100} alt="green party logo" /></a>
+                    </div>
+
+                    <div>
+                        <a onClick={selectPartyCons}><img src={consLogo} width={100} alt="conservative party logo" /></a>
+                    </div>
+
+                    <div>
+                        <a onClick={selectPartySNP}><img src={snpLogo} width={100} alt="snp party logo"/></a>
+                    </div>
                 </div>
 
-                <div>
-                    <a onClick={selectPartyCons}><img src={consLogo} width={100} alt="conservative party logo" /></a>
-                </div>
-
-                <div>
-                    <a onClick={selectPartySNP}><img src={snpLogo} width={100} alt="snp party logo"/></a>
-                </div>
-              </div>
-
-            <p>Your Choice: {voteValue}</p>
+                <p>Your Choice: {voteValue}</p>
             
-            <ContinueButton onClick={continueForward} buttonLabel={buttonText}/>
+                <ContinueButton onClick={continueForward} buttonLabel={buttonText}/>
             
-            <div className='back'>
-                <BackButton onClick={goBack} buttonLabel="< Back"/>
-            </div>
+                <div className='back'>
+                    <BackButton onClick={goBack} buttonLabel="< Back"/>
+                </div>
 
             </motion.div>
 
