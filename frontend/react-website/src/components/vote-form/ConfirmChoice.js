@@ -1,12 +1,17 @@
 import React from 'react'
 // Components
 import ContinueButton from '../buttons/ContinueButton'
+import BackButton from '../buttons/BackButton';
 
 function ConfirmChoice({formData, page, setPage}) {
     
     function continueForward () {
         setPage(page + 1)
         //need post to send form data to the database
+    };
+
+    function goBack () {
+        setPage(page - 1)
     };
 
     return (
@@ -27,6 +32,9 @@ function ConfirmChoice({formData, page, setPage}) {
                 <p>AGE: {formData.age}</p>
                 <p>VOTE: {formData.voteChoice}</p>
                 <ContinueButton onClick={continueForward} buttonLabel="Confirm"/>
+                <div className='back'>
+                    <BackButton onClick={goBack} buttonLabel="< Back"/>
+                </div>
             </div>
 
         </div>

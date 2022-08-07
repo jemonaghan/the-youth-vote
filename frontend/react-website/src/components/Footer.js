@@ -23,7 +23,7 @@ function Footer() {
             <div className="row">
               
               <div className="col-sm-8 col-md-4">
-                <Link to="/" className="footer-link">Sign up</Link>
+                <Link to="/sign-up" className="footer-link">Sign up</Link>
               </div>
             
               <div className="col-4 d-none d-md-block text-center">
