@@ -1,4 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
+import BlueButton from '../components/buttons/BlueButton';
+import OrangeButton from '../components/buttons/OrangeButton';
 
 import "./Home.css";
 
@@ -17,7 +21,7 @@ new generation of voters. </p>
 			</div>
 
 			<div id="vote">
-				<button>VOTE</button>
+				<Link to="/vote"><OrangeButton buttonLabel="VOTE!" /></Link>
 			</div>
 
 			<div class="text-box">
@@ -26,7 +30,7 @@ new generation of voters. </p>
 			</div>
 
 			<div id="sign-up">
-				<button>SIGN-UP</button>
+				<Link to="/sign-up"><BlueButton buttonLabel="SIGN UP" /></Link>
 			</div>
 			
 		</div>

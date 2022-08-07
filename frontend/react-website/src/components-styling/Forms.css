@@ -1,9 +1,13 @@
+.sign-up-form, .vote-form{
+    overflow: hidden;
+}
+
 .form-container{
     width: calc(100vw - (1rem * 2));
     max-width: 700px;
     min-height: 400px;
     height: fit-content;
-    margin: auto auto;
+    margin: 0 auto 100px auto;
     /* background-color: black; */
     background-color: #282c34;
     /* background-image: linear-gradient(to left top, #282c34, #282a30, #27272b, #252527, #232323); */
@@ -96,4 +100,8 @@
 
 .inactive{
     opacity: 50%;
+}
+
+.final{
+    padding-top: 5rem;
 }
