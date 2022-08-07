@@ -4,7 +4,7 @@ function ResultsButton({onClick, buttonLabel}) {
   
     return (
         <>
-            <Button variant="light" onClick={onClick}>
+            <Button variant="dark" onClick={onClick}>
                 {buttonLabel}
             </Button>{' '}
         </>

@@ -6,6 +6,7 @@ import consLogo from "../../images/conservative-party-logo.png"
 import snpLogo from "../../images/snp-party-logo.png"
 
 import ContinueButton from '../buttons/ContinueButton';
+import BackButton from '../buttons/BackButton';
 
 function VoteChoice({formData, setFormData, page, setPage}) {
   
@@ -35,6 +36,10 @@ function VoteChoice({formData, setFormData, page, setPage}) {
         } else {
             console.log('select party')
         }
+    };
+
+    function goBack () {
+        setPage(page - 1)
     };
 
     return (
@@ -75,7 +80,11 @@ function VoteChoice({formData, setFormData, page, setPage}) {
             <p>Your Choice: {voteValue}</p>
             
             <ContinueButton onClick={continueForward} buttonLabel={buttonText}/>
-  
+            
+            <div className='back'>
+                <BackButton onClick={goBack} buttonLabel="< Back"/>
+            </div>
+
             </motion.div>
 
         </div>
