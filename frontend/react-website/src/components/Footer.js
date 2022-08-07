@@ -1,4 +1,3 @@
-
 import  '../components-styling/Footer.css';
 import React from 'react';
 import { FaTwitter } from 'react-icons/fa';
