@@ -1,17 +1,29 @@
 import React from 'react'
 
-function LearnMore() {
-  return (
-    <div>
-      <div>
-        <h1>the youth paliment</h1>
-      </div>
+import "./Learn.css";
 
-      <div>
-        <h1>gov .uk</h1>
-      </div>
-    </div>
-  )
+function LearnMore() {
+
+    return (
+        <div className='learn-more-page'>
+            
+            <div className="container byc">
+                <a href="https://www.byc.org.uk/" target="blank">
+                    <div className='box'>
+                        <h1>British Youth Council</h1>
+                    </div>
+                </a>
+            </div>
+
+            <div className="container mym">
+                <a href="https://www.byc.org.uk/uk/uk-youth-parliament/make-your-mark" target="blank">
+                    <div className='box'>
+                        <h1>Make Your Mark</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+    );
 }
 
 export default LearnMore

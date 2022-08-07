@@ -8,7 +8,9 @@
 }
 
 #homepage h1{
-    font-family: 'Rubik Glitch', cursive;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 3.2rem;
+    text-shadow: 2px 2px orange;
 }
 
 #homepage div{
@@ -21,26 +23,34 @@
     background-color: black;
     background-image: url("../../media/squiggle-bg.jpg");
     background-attachment: fixed;
+    background-position: 50% 0;
+    background-size: auto 100vmax;
+}
+
+#homepage #heading, #homepage #vote, #homepage #sign-up{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vmax;
+    max-height: 250px;
 }
 
 #homepage #vote{
     background-image: url("../../media/voting-hands.jpg");
     /* min-height: 200px; */
     background-attachment: fixed;
-    background-position: 50% 70%;
-    background-repeat: no-repeat;
-    background-size: 100vmax auto;
-    height: 20vmax;
+    background-position: 50% 10%;
+    background-repeat: repeat;
+    background-size: auto 100vmax;
 }
 
 #homepage #sign-up{
     background-image: url("../../media/voting-ballot-box.jpg");
     /* min-height: 200px; */
     background-attachment: fixed;
-    /* background-position: 50% 40%; */
+    background-position: 50% 30%;
     background-repeat: no-repeat;
-    background-size: 100vmax auto;
-    height: 20vmax;
+    background-size: auto 100vmax;
 }
 
 #homepage .text-box{
