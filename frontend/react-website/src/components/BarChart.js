@@ -7,6 +7,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+import "../components-styling/BarChart.css";
+
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const state = {
@@ -60,8 +62,16 @@ const BarChart = () => {
   };
 
   return (
-    <div>
-      <Bar data={state} height={400} options={options} />
+    <div className="results-container">
+      <div className="header">
+        <h1>The Results</h1>
+      </div>      
+      <div className="sub-header">
+        <h2>This is How the Youth Voted</h2>
+      </div>
+      <div className="body">
+          <Bar data={state} height={400} options={options} />
+      </div>
     </div>
   );
 };
