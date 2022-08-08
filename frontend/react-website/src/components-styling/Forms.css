@@ -1,9 +1,13 @@
+.sign-up-form, .vote-form{
+    overflow: hidden;
+}
+
 .form-container{
     width: calc(100vw - (1rem * 2));
     max-width: 700px;
     min-height: 400px;
     height: fit-content;
-    margin: auto auto;
+    margin: 0 auto 100px auto;
     /* background-color: black; */
     background-color: #282c34;
     /* background-image: linear-gradient(to left top, #282c34, #282a30, #27272b, #252527, #232323); */
@@ -38,6 +42,7 @@
     align-items: center;
     text-align: center;
     padding: 10px 20px 60px 20px;
+    position: relative;
 }
 
 .form-container .body h2{
@@ -52,7 +57,7 @@
 }
 
 .form-container .body p{
-    margin-top: 1.4rem;
+    margin: 0.6rem;
 }
 
 .form-container .body .party-choices{
@@ -60,6 +65,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.form-container .body .back{
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}
+
+.party-choices a{
+    opacity: 0.8;
+}
+
+.party-choices a:hover{
+    opacity: 1;
 }
 
 .form-container .footer{
@@ -80,4 +100,8 @@
 
 .inactive{
     opacity: 50%;
+}
+
+.final{
+    padding-top: 5rem;
 }

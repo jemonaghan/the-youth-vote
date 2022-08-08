@@ -1,12 +1,20 @@
 import React from 'react'
 import { motion } from "framer-motion";
 
+import ContinueButton from '../buttons/ContinueButton';
+import BackButton from '../buttons/BackButton';
+
 
 function Age({formData, setFormData, page, setPage}) {
   
-    function handleOnClick2 () {
-        setPage(page + 1)
-        // console.log(formData)
+    function continueForward () {
+        if (formData.age > 10 && formData.age < 18)
+            setPage(page + 1)
+            // console.log(formData)
+    }
+
+    function goBack () {
+        setPage(page - 1)
     }
 
     return (
@@ -17,7 +25,8 @@ function Age({formData, setFormData, page, setPage}) {
             <motion.div className='header'
                 animate={{ y: 0}}
                 initial={{ y: 270}}
-                transition={{delay: 0.2}}>
+                transition={{delay: 0.2, type: "inertia "}}
+            >
                 <h1>Step 2: Age</h1>
             </motion.div>
 
@@ -34,10 +43,12 @@ function Age({formData, setFormData, page, setPage}) {
                     setFormData({ ...formData, age: event.target.value })
                     }
             />
-            <button onClick={handleOnClick2}>
-                Continue
-            </button>
+
+            < ContinueButton onClick={continueForward} buttonLabel="Continue"/>
             </form>
+            <div className='back'>
+                <BackButton onClick={goBack} buttonLabel="< Back"/>
+            </div>
             </motion.div>
 
             <div className='footer-headers'>
@@ -46,7 +57,7 @@ function Age({formData, setFormData, page, setPage}) {
                 </div>
             </div>
         </div>
-  );
+    );
 }
 
 export default Age
