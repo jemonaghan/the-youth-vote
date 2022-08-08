@@ -1,0 +1,10 @@
+.banner {
+    min-height: 250px;
+    background-color: #282c34;
+}
+
+.banner-copy {
+    justify-content: center;
+    color: whitesmoke;
+    margin: 100px;
+}

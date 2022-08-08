@@ -1,8 +1,15 @@
 import React from 'react';
+import Banner from '../components/Banner.js';
+import '../../src/App.css'
   
-function Home() {
+const Home = () => {
   return (
-      <h1>this is the homepage</h1>
+    <div class="home-page">
+
+      <Banner />
+      
+
+      </div>
   );
 }
   
