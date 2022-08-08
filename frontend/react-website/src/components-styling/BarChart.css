@@ -1,0 +1,40 @@
+.results-container{
+        width: calc(100vw - (1rem * 2));
+        max-width: 700px;
+        min-height: 400px;
+        height: fit-content;
+        margin: 0 auto 100px auto;
+        /* background-color: black; */
+        background-color: #282c34;
+        /* background-image: linear-gradient(to left top, #282c34, #282a30, #27272b, #252527, #232323); */
+        color: whitesmoke;
+        position: relative;
+        overflow: hidden;
+}
+
+.results-container .header{
+    min-height: 50px;
+    width: 100%;
+    background-color: #5FF646;
+}    
+
+.results-container .header h1{
+    padding: 0.4rem 0.8rem;
+    font-family: 'Rubik Mono One', sans-serif !important;
+    margin: 0;
+}
+
+.results-container .sub-header{
+    text-align: center;
+    padding: 2rem 0 0.6rem 0;
+}   
+
+.results-container .body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px 60px 20px;
+    position: relative;
+}
