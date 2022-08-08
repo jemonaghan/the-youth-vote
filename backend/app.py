@@ -1,6 +1,7 @@
 from distutils.log import error
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select
 from db_utils import get_voter_info
 from flask_cors import CORS
 import requests
@@ -9,12 +10,19 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+# jemilla config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
+# joanne config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
+# check the connection is working
+@app.route("/")
+def api_homepage():
+    return ("Welcome to the api")
 
 # take number of pollcards and send to db
 
@@ -23,12 +31,16 @@ def create_pollcard():
     if request.method == 'POST':
         json_data = request.json
         # addData = pollcard(url=json_data.get('url'), numberOfPollcards=json_data.get('number_pollcards'))
-        for id in range(json_data.get('numberOfPollcards')):
-            # print(id)
-            addData = Pollcards(school_urn=json_data.get('urn'), voter_ID=get_id(id))
-            db.session.add(addData)
-            db.session.commit()
+        add_pollcards_db(json_data.get('urn'), json_data.get('numberOfPollcards'))
     return success("Pollcards created")#download of pollcards needed
+
+def add_pollcards_db(urn, num, start_id=0):
+    for id in range(start_id, num + start_id):
+            # print(id)
+        addData = Pollcards(school_urn=urn, voter_ID=get_id(id))
+        db.session.add(addData)
+        db.session.commit()
+
 
 def get_id(id, required_length=4):
     id = str(id+1)
@@ -37,19 +49,44 @@ def get_id(id, required_length=4):
     zero = "0" * zeros_needed
     return zero + id 
     
-    
+@app.route("/school/register/add", methods = ['POST'])
+def add_pollcards():
+    if request.method == 'POST':
+        json_data = request.json
+        # Create sql query
+        query = (
+            select(Pollcards).
+                where(Pollcards.school_urn == json_data.get('urn')).
+                order_by(Pollcards.voter_ID.desc())
+        )
+        print(query)
+        
+        pollcard = db.session.execute(query).scalars().first()
+        num=json_data.get('numberOfPollcards')
+        add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID)
+       
+    return success("Pollcards created")#download of pollcards needed
+ 
 
 class Pollcards(db.Model):
     school_urn = db.Column(db.String(6), primary_key=True)
     voter_ID = db.Column(db.Integer, primary_key=True)
-    vote = db.Column(db.Integer, primary_key=False)
+    vote = db.Column(db.String(128), primary_key=False)
+    age = db.Column(db.Integer, primary_key=False)
 
     def __repr__(self):
-        return '<Pollcards %r>' % self.school_urn + self.voter_ID
+        return '<Pollcards %r>' % self.school_urn + str(self.voter_ID)
 
+
+#route to add voter vote and send to db
 
 @app.route("/voter/vote", methods = ['POST'])
 def vote():
+    if request.method == 'POST':
+        json_data = request.json
+        addData = Pollcards(school_urn=json_data.get('urn'), voter_ID=get_id(id), vote=json_data.get("vote"), age=json_data.get("age"))
+        db.session.add(addData)
+        db.session.commit()
     return success("Vote submitted")
 
 
