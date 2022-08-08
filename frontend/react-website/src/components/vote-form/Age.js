@@ -8,9 +8,18 @@ import BackButton from '../buttons/BackButton';
 function Age({formData, setFormData, page, setPage}) {
   
     function continueForward () {
-        if (formData.age > 10 && formData.age < 18)
+        if (formData.age > 10 && formData.age < 18) {
             setPage(page + 1)
-            // console.log(formData)
+        }
+        else if (formData.age < 10 ){
+            console.log("voter is too young")
+        }
+        else if (formData.age > 18 ){
+            console.log("voter is too old")
+        }
+        else {
+            console.log("error in user input, input must be int")
+        }
     }
 
     function goBack () {
