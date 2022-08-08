@@ -39,3 +39,13 @@ body{
 	display: flex;
 	align-items: stretch;
 }
+
+.home-page {
+  background-color: #232323;
+  background-image: url("../media/squiggle-bg.jpg");
+  min-height: calc(100vh - 80px);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  padding-top: 60px;
+}
