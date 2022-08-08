@@ -6,8 +6,10 @@ import BackButton from '../buttons/BackButton';
 function ConfirmChoice({formData, page, setPage}) {
     
     function continueForward () {
-        setPage(page + 1)
+        
         //need post to send form data to the database
+        
+        setPage(page + 1)
     };
 
     function goBack () {
@@ -31,14 +33,16 @@ function ConfirmChoice({formData, page, setPage}) {
                 <p>POLL CARD ID: {formData.pollCardNum}</p>
                 <p>AGE: {formData.age}</p>
                 <p>VOTE: {formData.voteChoice}</p>
+                
                 <ContinueButton onClick={continueForward} buttonLabel="Confirm"/>
+                
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>
             </div>
 
         </div>
-    )
+    );
 }
 
 export default ConfirmChoice

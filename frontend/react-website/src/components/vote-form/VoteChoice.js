@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 
 import greenLogo from "../../images/green-party-logo.png";
 import consLogo from "../../images/conservative-party-logo.png"
-import snpLogo from "../../images/snp-party-logo.png"
+import snpLogo from "../../images/snp-party-logo.png";
+import labLogo from "../../images/labour-part-logo.png";
+import libdemLogo from "../../images/liberal-democrats-party-logo.png";
 
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
@@ -23,6 +25,16 @@ function VoteChoice({formData, setFormData, page, setPage}) {
         setButtonText('VOTE!')
     }
 
+    function selectPartyLabour () {
+        setVoteValue("Labour Party");
+        setButtonText('VOTE!')
+    }
+
+    function selectPartyLibdem () {
+        setVoteValue("Liberal Democrats");
+        setButtonText('VOTE!')
+    }
+
     function selectPartySNP () {
         setVoteValue("Scottish National Party")
         setButtonText('VOTE!')
@@ -36,8 +48,9 @@ function VoteChoice({formData, setFormData, page, setPage}) {
 
             setPage(page + 1)
 
-        } else {
-            console.log('select party')
+        } 
+        else {
+            console.log('select a party')
         }
     };
 
@@ -71,15 +84,23 @@ function VoteChoice({formData, setFormData, page, setPage}) {
                 
                 <div className='party-choices'>
                     <div className="selection">
-                        <a onClick={selectPartyGreen}><img src={greenLogo} width={100} alt="green party logo" /></a>
+                        <img onClick={selectPartyGreen} src={greenLogo} alt="green party logo" />
                     </div>
 
-                    <div>
-                        <a onClick={selectPartyCons}><img src={consLogo} width={100} alt="conservative party logo" /></a>
+                    <div className="selection">
+                        <img onClick={selectPartyCons}src={consLogo}  alt="conservative party logo" />
                     </div>
 
-                    <div>
-                        <a onClick={selectPartySNP}><img src={snpLogo} width={100} alt="snp party logo"/></a>
+                    <div className="selection">
+                        <img onClick={selectPartySNP} src={snpLogo} alt="snp party logo" />
+                    </div>
+
+                    <div className="selection">
+                        <img onClick={selectPartyLabour} src={labLogo} alt="labour party logo" />
+                    </div>
+
+                    <div className="selection">
+                        <img onClick={selectPartyLibdem} src={libdemLogo} alt="liberal democrats party logo" />
                     </div>
                 </div>
 
@@ -94,8 +115,7 @@ function VoteChoice({formData, setFormData, page, setPage}) {
             </motion.div>
 
         </div>
-  );
+    );
 }
-
 
 export default VoteChoice
