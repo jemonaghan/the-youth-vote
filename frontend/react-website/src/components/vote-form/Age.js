@@ -8,8 +8,9 @@ import BackButton from '../buttons/BackButton';
 function Age({formData, setFormData, page, setPage}) {
   
     function continueForward () {
-        setPage(page + 1)
-        // console.log(formData)
+        if (formData.age > 10 && formData.age < 18)
+            setPage(page + 1)
+            // console.log(formData)
     }
 
     function goBack () {
@@ -56,7 +57,7 @@ function Age({formData, setFormData, page, setPage}) {
                 </div>
             </div>
         </div>
-  );
+    );
 }
 
 export default Age

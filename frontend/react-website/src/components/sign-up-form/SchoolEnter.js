@@ -30,10 +30,10 @@ function SchoolEnter({formData, setFormData, page, setPage}) {
             <div className='footer-headers'>
 
                 <div className='header inactive'>
-                    <h1>Step 2: Age</h1>
+                    <h1>Step 2: Poll Cards</h1>
                 </div>
                 <div className='header inactive'>
-                    <h1>Step 3: Vote</h1>
+                    <h1>Step 3: Confirm</h1>
                 </div>
 
             </div>
