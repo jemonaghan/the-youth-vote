@@ -5,6 +5,7 @@ import SchoolEnter from './SchoolEnter';
 import SchoolResults from './SchoolResults';
 import PollCards from './PollCards';
 import Validate from './Validate';
+import SignUpThankYou from './ThankYou';
 
 
 function Form() {
@@ -38,11 +39,22 @@ function Form() {
             />;
         } 
         
-        else {
+        else if (page === 3) {
             return <Validate 
                 formData={formData} setFormData={setFormData} 
                 page={page} setPage={setPage}
             />;
+        } 
+
+        else if (page === 4) {
+            return <SignUpThankYou 
+                formData={formData} setFormData={setFormData} 
+                page={page} setPage={setPage}
+            />;
+        } 
+
+        else {
+            return <h1>Sorry there has been an error please refresh the page</h1>;
         }
     };
   
@@ -61,43 +73,9 @@ function Form() {
                 </motion.div>
                   
             </motion.div>
-        {/* </div>
-        <div className="form-container">
-        <div className="sign-up-form">
-          <div className="header">
-            <h1>{FormTitles[page]}</h1>
-          </div>
-          <div className="body">{PageDisplay()}</div>
-          <div className="footer">
-            <button
-              disabled={page === 0}
-              onClick={() => {
-                setPage((currPage) => currPage - 1);
-              }}
-            >
-              Prev
-            </button>
-            <button
-              onClick={() => {
-                if (page === FormTitles.length - 1) {
-                  alert("FORM SUBMITTED");
-                  axios({
-                    method: 'post',
-                    url: 'https://localhost:5000/school/register',
-                    data: {formData}
-                  });
-                  console.log(formData);
-                } else {
-                  setPage((currPage) => currPage + 1);
-                }
-              }}
-            >
-              {page === FormTitles.length - 1 ? "Submit" : "Next"}
-            </button>
-          </div>
-        </div> */}
-      </div>
+
+        </div>
     );
-  }
+}
   
-  export default Form;
+export default Form;

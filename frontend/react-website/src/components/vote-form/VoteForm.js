@@ -51,17 +51,21 @@ function VotingForm () {
             />;
         } 
         
-        else {
+        else if (page === 5) {
             return <VoteThankYou />;
+        } 
+
+        else {
+            return <h1>Sorry there has been an error please refresh the page</h1>;
         }
     };
 
-      return (
+    return (
         <div className="vote-form">
             <motion.div className="form-container"
                 animate={{ scale: 1}}
                 initial={{ scale: 0.2}}>
-                
+                    
                 <motion.div  
                     initial={{ opacity: 0}}
                     animate={{ opacity: 1}}
@@ -69,12 +73,10 @@ function VotingForm () {
                 >
                     {PageDisplay()}
                 </motion.div>
-                
+                    
             </motion.div>
         </div>
-      
-      );
-
+    );
 }
 
 export default VotingForm
