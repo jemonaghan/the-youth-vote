@@ -31,15 +31,19 @@ def create_pollcard():
     if request.method == 'POST':
         json_data = request.json
         # addData = pollcard(url=json_data.get('url'), numberOfPollcards=json_data.get('number_pollcards'))
-        add_pollcards_db(json_data.get('urn'), json_data.get('numberOfPollcards'))
-    return success("Pollcards created")#download of pollcards needed
+        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), json_data.get('numberOfPollcards'))
+    return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards 
 
-def add_pollcards_db(urn, num, start_id=0):
+
+def add_pollcards_db(urn, num, start_id=1):
+    pollcard_numbers = []
     for id in range(start_id, num + start_id):
-            # print(id)
+        pollcard_numbers.append(urn + get_id(id))
         addData = Pollcards(school_urn=urn, voter_ID=get_id(id))
         db.session.add(addData)
         db.session.commit()
+    return pollcard_numbers
+     
 
 
 def get_id(id, required_length=4):
@@ -63,9 +67,9 @@ def add_pollcards():
         
         pollcard = db.session.execute(query).scalars().first()
         num=json_data.get('numberOfPollcards')
-        add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID)
+        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID)
        
-    return success("Pollcards created")#download of pollcards needed
+    return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards needed
  
 
 class Pollcards(db.Model):
@@ -76,6 +80,7 @@ class Pollcards(db.Model):
 
     def __repr__(self):
         return '<Pollcards %r>' % self.school_urn + str(self.voter_ID)
+
 
 
 #route to add voter vote and send to db
