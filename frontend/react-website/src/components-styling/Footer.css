@@ -7,20 +7,32 @@
     right: 0;
     width: 100vw;
 }
-/* .container {
-    min-height: calc(100vh - 34px);
-} */
+
 .footer--pin {
     position: relative;
     left: 0;
     bottom: 0;
 }
-.footer-link {
+.foot-link {
     text-decoration: none;
     color: white;
     font-size: 14pt;
 }
-.footer-link:hover {
+
+.foot-link:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}
+.foot-sign {
+    text-decoration: none;
+    color: white;
+    font-size: 14pt;
+    margin: 15px;
+}
+
+.foot-sign:hover {
     text-decoration: none;
     color: white;
     background-color: #FF8702;
