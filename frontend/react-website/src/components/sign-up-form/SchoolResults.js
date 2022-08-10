@@ -23,20 +23,36 @@ function SchoolResults({formData, setFormData, page, setPage}) {
     // at the minute using a useFetch to get data from database but could use axios
 
     // using api in app.py
-    const{ data, loading, error } = useFetch("https://localhost:5000/school/find/" + formData.schoolSearch);
+//     const{ data, loading, error } = useFetch("https://localhost:5000/school/find/" + formData.schoolSearch);
 
     // direct to external api
     // const{ data, loading, error } = useFetch("https://api.maptivo.co.uk/schools?address.postcode=bl4");
   
-    if (loading) return <h1>LOADING...</h1>;
-    if (error) console.log(error);
+//     if (loading) return <h1>LOADING...</h1>;
+//     if (error) console.log(error);
 
-    let apiData = data.data
+//     let apiData = data.data
 
-    console.log(formData.schoolSearch)
-    console.log(`api: ${apiData}`)
+//     console.log(formData.schoolSearch)
+//     console.log(`api: ${apiData}`)
 
-    const schools = schoolsData.data.map(({ name }) => name)
+//     const schools = schoolsData.data.map(({ name }) => name)
+    
+        axios({
+        method: 'get',
+        url: 'http://127.0.0.1:5000/school/find',
+        params: {
+          v: formData.schoolSearch                  
+        }
+      })
+      .then(function (response) {
+        console.log(response.data)
+        formData = response.data;        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });   
+    
 
     function continueForward () {
         setPage(page + 1)
