@@ -1,26 +1,37 @@
-import "../components-styling/Nav.css"
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import Navigation from "./Navigation";
+import { ClassNames } from "@emotion/react";
+import MobileNavigation from "./MobileNavigation";
+import "../components-styling/NavBar_module.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState, useEffect } from 'react';
 
-function Navbar() {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/vote">Vote</Link>
-        </li>
-        <li>
-          <Link to="/results">Results</Link>
-        </li>
-        <li>
-          <Link to="/sign-up">Sign Up</Link>
-        </li>
-      </ul>
-    </nav>
-  );
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
 }
 
+const Navbar = () => {
+
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    useEffect(() => {
+        function handleResize() {
+          setWindowDimensions(getWindowDimensions());
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
+      
+  return (
+    <div className="NavBar">
+      {windowDimensions.width < "990" ? <MobileNavigation />: <Navigation />}
+
+      
+    </div>
+  );
+}
 export default Navbar;
+

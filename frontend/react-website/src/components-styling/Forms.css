@@ -1,17 +1,19 @@
-body{
-    background-image: url("../../public/media/squiggle-abstract-vector-bw.jpg");
+.sign-up-form, .vote-form{
+    overflow: hidden;
 }
 
 .form-container{
-    width: 80%;
+    width: calc(100vw - (1rem * 2));
+    max-width: 700px;
     min-height: 400px;
     height: fit-content;
-    margin: 60px auto auto auto;
+    margin: 0 auto 100px auto;
     /* background-color: black; */
     background-color: #282c34;
     /* background-image: linear-gradient(to left top, #282c34, #282a30, #27272b, #252527, #232323); */
     color: whitesmoke;
     position: relative;
+    overflow: hidden;
 }
 
 .form-container .header{
@@ -19,8 +21,18 @@ body{
     width: 100%;
 }
 
+.sign-up-form .header{
+    background-color: #00CCFF;
+}
+
+.vote-form .header{
+    background-color: #FF8702;
+}
+
 .form-container .header h1{
-    padding-left: 10px;
+    padding: 0.4rem 0.8rem;
+    font-family: 'Rubik Mono One', sans-serif !important;
+    margin: 0;
 }
 
 .form-container .body{
@@ -29,24 +41,55 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px 20px 80px 20px;
+    padding: 10px 20px 60px 20px;
+    position: relative;
 }
 
 .form-container .body h2{
     flex: 100%;
-    margin: 20px 0 40px 0;
+    margin: 2rem 0 2.4rem 0;
 }
 
 .form-container .body input{
-    margin: 0 auto;
+    margin: 0 auto 32px auto;
     display: block;
+    max-width: 99%;
+}
+
+.form-container .body p{
+    margin: 0.6rem;
 }
 
 .form-container .body .party-choices{
+    width: 90%;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
 }
 
+.party-choices .selection{
+    width: 20vw;
+    min-width: 80px;
+    max-width: 120px;
+}
+
+.party-choices img{
+    opacity: 0.8;
+    width: 100%;
+}
+
+.party-choices img:hover{
+    opacity: 1;
+}
+
+.form-container .body .back{
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}
 
 .form-container .footer{
     display: flex;
@@ -60,94 +103,14 @@ body{
 .form-container .footer-headers{
     justify-content: center;
     width: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0;
-}
-
-.sign-up-form .header{
-    background-color: #00CCFF;
-}
-
-.voting-form .header{
-    background-color: orange;
 }
 
 .inactive{
     opacity: 50%;
 }
 
-.top-header-inactive{
-    background-color: rgba(255, 166, 0, 0.5);
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.bottom-header-inactive{
-    background-color: rgba(255, 166, 0, 0.5);
-    position: static;
-    bottom: 0;
-    width: 100%;
-}
-
-/* vote form */
-.vote-form .header{
-    width: 100%;
-    background-color: #FF8702;
-}
-
-
-
-/* all below can be deleted (I think) */
-.demo-header{
-    min-height: 50px;
-    background-color: aquamarine;
-    display: block;
-    width: 100%;
-
-}
-
-.vote-heading{
-    padding: 5px 20px;
-    background-color: blue;
-}
-
-.vote-content{
-    text-align: center;
-    /* height: 0; */
-}
-
-.active{
-    height: auto;
-    background-color: red;
-}
-
-.btn {
-    border: none;
-    outline: none;
-    padding: 10px 16px;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.active{
-    background-color: #666;
-    color: white;
-}
-
-.active .vote-content{
-    height: auto;
-}
-
-.btn:hover{
-    background-color: rgb(4, 211, 83);
-}
-
-.w3-hide{
-    display:none!important
-}
-
-.w3-show{
-    display:block!important
+.final{
+    padding-top: 5rem;
 }

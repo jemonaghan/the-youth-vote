@@ -9,10 +9,24 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+# jemilla config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
+
+# joanne config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+
+# rana config
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:cfg-password!@localhost:3306/youth_vote2"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+
+# check the connection is working
+@app.route("/")
+def api_homepage():
+    return ("Welcome to the api")
 
 
 # take number of pollcards and send to db
@@ -121,9 +135,10 @@ def get_voter_id(pollcard_id):
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
-    schools_by_postcode = get_school_info(query, 'address.postcode')
+#     schools_by_postcode = get_school_info(query, 'address.postcode')
     schools_by_name = get_school_info(query, 'name')
-    data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+#     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+    data = schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)
     return success(data)

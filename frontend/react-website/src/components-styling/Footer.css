@@ -1,0 +1,40 @@
+.footer {
+    background-color: grey;
+    min-height: 55px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+}
+
+.footer--pin {
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+.foot-link {
+    text-decoration: none;
+    color: white;
+    font-size: 14pt;
+}
+
+.foot-link:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}
+.foot-sign {
+    text-decoration: none;
+    color: white;
+    font-size: 14pt;
+    margin: 15px;
+}
+
+.foot-sign:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}

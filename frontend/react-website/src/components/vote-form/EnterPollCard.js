@@ -1,32 +1,38 @@
 import React, { useState } from 'react';
-import { motion } from "framer-motion";
-import voterInfo from "../../utils/voterdata.json"
 
-// poll card num for testing
+import ContinueButton from '../buttons/ContinueButton';
+
+// static poll card number for testing
+import voterInfo from "../../data/voterdata.json";
+
+// poll card number for testing
 // 110907-000000
 
 function EnterPollCard({formData, setFormData, page, setPage}) {
     
     const [errorMessage, setErrorMessage] = useState("");
 
-    const voterData = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
-    const voterNumber = voterData.toString();
+    const numberCheck = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
+    
+    let i = numberCheck.indexOf(formData.pollCardNum)
 
-    const voterData2 = voterInfo.data.map(({ vote }) =>  vote);
-    const voterChoice = voterData2.toString();
+    const voteCheck = voterInfo.data.map(({ hasVoted }) =>  hasVoted );
 
     function continueForward () {
         
-        // console.log((voterNumber))
-        // console.log(formData.pollCardNum)
+        //need axios here to check the entered pollcard number and whether or not the voter has voted
 
-        if (voterNumber === formData.pollCardNum && voterChoice === "") {
+        // pollcard number is in database and voter has NOT voted
+        if (numberCheck.includes(formData.pollCardNum) === true && voteCheck[i] === 0) {
             console.log("match, no vote")
             setPage(page + 1)
-        } else if (voterNumber === formData.pollCardNum && voterChoice === "1") {
+        } 
+        // pollcard number is in database and voter HAS voted
+        else if (numberCheck.includes(formData.pollCardNum) === true && voteCheck[i] === 1) {
             console.log("match, voted")
             setPage(page - 1)
         }
+        // pollcard number is not in database
         else {
             console.log("no match")
             setErrorMessage("Sorry that number is not recognised")
@@ -36,15 +42,12 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
     return (
         <div>
             <div className='header'>
-                <h1>Step: 1 Poll Card</h1>
+                <h1>Step 1: Poll Card</h1>
             </div>
-            <motion.div className='body'
-                animate={{ opacity: 1}}
-                initial={{ opacity: 0}}
-                transition={{delay: 0.8}}>
+
+            <div className='body'>
                 <h2>Please Enter Your Poll Card Number</h2>
 
-                {/* <form> */}
                 <input
                     type="text"
                     placeholder='XXXXXX-XXXXXX'
@@ -53,27 +56,27 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
                         setFormData({ ...formData, pollCardNum: event.target.value })
                         }
                 />
+                
+                <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
 
-                <button onClick={continueForward}>
-                    Continue
-                </button>
-                {/* </form> */}
-            <p>{errorMessage}</p>
-            </motion.div>
+                <p>(numbers for testing) - </p>
+                <p>hasn't voted - 110907-000000</p>
+                <p>has voted - 110907-111111</p>
+                <p>{errorMessage}</p>
+            </div>
 
-            <motion.div className='footer-headers'
-                animate={{ y: 0}}
-                initial={{ y: -250}}
-                transition={{delay: 0.6}}>
+            <div className='footer-headers'>
+
                 <div className='header inactive'>
                     <h1>Step 2: Age</h1>
                 </div>
                 <div className='header inactive'>
                     <h1>Step 3: Vote</h1>
                 </div>
-            </motion.div>
+
+            </div>
         </div>
-  );
+    );
 }
 
 export default EnterPollCard

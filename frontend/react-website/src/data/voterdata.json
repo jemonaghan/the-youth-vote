@@ -1,0 +1,12 @@
+{
+    "data":[
+        {"pollCardNum":"110907-000000",
+        "age":"",
+        "voteChoice": "",
+        "hasVoted": 0},
+        {"pollCardNum":"110907-111111",
+        "age":"13",
+        "voteChoice": "Green",
+        "hasVoted": 1}
+    ]
+}

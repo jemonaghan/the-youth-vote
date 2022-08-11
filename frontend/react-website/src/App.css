@@ -1,11 +1,51 @@
-App {
-  text-align: center;
-  background-color: #282c34;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
+/* font imports */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Mono+One&family=Rubik:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap');
+
+/* 
+font-family: 'Rubik', sans-serif;
+font-family: 'Rubik Glitch', cursive;
+font-family: 'Rubik Mono One', sans-serif; 
+*/
+
+body{
+	background-color: #282c34;
+	font-family: 'Rubik', sans-serif !important;
+	font-weight: bold;
+}
+
+.vote-page, .sign-up-page, .results-page, .learn-more-page{
+	min-height: calc(100vh - 108px);
+}
+
+.vote-page, .sign-up-page{
+	background-color: #232323;
+	background-image: url("../media/squiggle-bg.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 60px;
+}
+
+.results-page{
+	background-color: #232323;
+	background-image: url("../media/ditsy-background.jpg");
+	background-position: center;
+	background-repeat: no-repeat; 
+	background-size: cover;
+	padding-top: 60px;
+}
+
+.learn-more-page{
+	display: flex;
+	align-items: stretch;
+}
+
+.home-page {
+  background-color: #232323;
+  background-image: url("../media/squiggle-bg.jpg");
+  min-height: calc(100vh - 80px);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  padding-top: 60px;
 }
