@@ -1,10 +1,14 @@
-import React from "react";
-import Navigation from "./Navigation";
+import React, { useState, useEffect } from "react";
 import { ClassNames } from "@emotion/react";
-import MobileNavigation from "./MobileNavigation";
-import "../components-styling/NavBar_module.css";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect } from 'react';
+
+import "../components-styling/NavBar.css";
+
+import logo from "../images/logo-orange.png"
+import Navigation from "./Navigation";
+import MobileNavigation from "./MobileNavigation";
+
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -27,9 +31,11 @@ const Navbar = () => {
       
   return (
     <div className="NavBar">
-      {windowDimensions.width < "990" ? <MobileNavigation />: <Navigation />}
+        {windowDimensions.width < "990" ? <MobileNavigation />: <Navigation />}
 
-      
+        <div className="nav-logo">
+            <a href="/"><img src={logo} alt="the youth vote logo" /></a>
+        </div>
     </div>
   );
 }

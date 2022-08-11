@@ -13,7 +13,7 @@ body{
 }
 
 .vote-page, .sign-up-page, .results-page, .learn-more-page{
-	min-height: calc(100vh - 120px);
+	min-height: calc(100vh - 140px);
 }
 
 .vote-page, .sign-up-page{

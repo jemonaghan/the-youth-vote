@@ -1,38 +1,29 @@
 .footer {
     background-color: grey;
-    min-height: 40px;
+    min-height: 60px;
     position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5px 20px;
 }
 
-.footer--pin {
-    position: relative;
-    left: 0;
-    bottom: 0;
+.two-stack{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
-.foot-link {
+
+.foot-link{
     text-decoration: none;
     color: white;
-    font-size: 14pt;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
 }
 
 .foot-link:hover {
-    text-decoration: none;
-    color: white;
-    background-color: #FF8702;
-    color: black;
-}
-.foot-sign {
-    text-decoration: none;
-    color: white;
-    font-size: 14pt;
-    margin: 15px;
-}
-
-.foot-sign:hover {
     text-decoration: none;
     color: white;
     background-color: #FF8702;

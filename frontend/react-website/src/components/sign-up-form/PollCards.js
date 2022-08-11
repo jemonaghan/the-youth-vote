@@ -5,7 +5,16 @@ import BackButton from '../buttons/BackButton';
 function PollCards({ formData, setFormData, page, setPage }) {
     
     function continueForward () {
-        setPage(page + 1)
+        if (parseInt(formData.pollCardNum) > 0 && parseInt(formData.pollCardNum) <= 150) {
+            setPage(page + 1)
+        }
+        else if (parseInt(formData.pollCardNum) < 0 || parseInt(formData.pollCardNum > 150)){
+            console.log("Request need to be between 0 - 150")
+        }
+        else {
+            console.log("Error - input needs to be numeric")
+        }
+            
     }
 
     function goBack () {
@@ -25,7 +34,7 @@ function PollCards({ formData, setFormData, page, setPage }) {
                 <h2>How Many Poll Cards Does Your School Need?</h2>
             <input  
                 type="text"
-                placeholder="10? 50?"
+                placeholder="0 - 150"
                 value={formData.pollCardNum}
                 onChange={(event) =>
                     setFormData({ ...formData, pollCardNum: event.target.value })
