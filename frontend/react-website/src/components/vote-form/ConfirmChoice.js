@@ -30,9 +30,11 @@ function ConfirmChoice({formData, page, setPage}) {
 
             <div className='body'>
                 <h2>Please Confirm Your Details</h2>
-                <p>POLL CARD ID: {formData.pollCardNum}</p>
-                <p>AGE: {formData.age}</p>
-                <p>VOTE: {formData.voteChoice}</p>
+                <div className='details'>
+                    <p>POLL CARD ID: {formData.pollCardNum}</p>
+                    <p>AGE: {formData.age}</p>
+                    <p>VOTE: {formData.voteChoice}</p>
+                </div>
                 
                 <ContinueButton onClick={continueForward} buttonLabel="Confirm"/>
                 

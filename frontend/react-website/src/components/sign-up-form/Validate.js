@@ -30,14 +30,10 @@ function Validate({ formData, page, setPage }) {
 
             <div className='body'>
                 <h2>Please Check All the Details Are Correct</h2>
-                <div>
+                <div className='details'>
                     <p>School Name: {formData.schoolName}</p>
-                </div>
-                <div>
-                    School Address: {formData.postcode}
-                </div>
-                <div>
-                    Poll Cards: {formData.pollCardNum}
+                    <p>School Address: {formData.postcode}</p>
+                    <p>Poll Cards: {formData.pollCardNum}</p>
                 </div>
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Confirm" />
