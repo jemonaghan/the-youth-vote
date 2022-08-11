@@ -25,7 +25,7 @@ function PollCards({ formData, setFormData, page, setPage }) {
                 <h2>How Many Poll Cards Does Your School Need?</h2>
             <input  
                 type="text"
-                placeholder="Please enter how many Poll Cards you would like"
+                placeholder="10? 50?"
                 value={formData.pollCardNum}
                 onChange={(event) =>
                     setFormData({ ...formData, pollCardNum: event.target.value })

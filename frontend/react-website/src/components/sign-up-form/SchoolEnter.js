@@ -15,10 +15,10 @@ function SchoolEnter({formData, setFormData, page, setPage}) {
             </div>
 
             <div className='body'>
-                <h2>Please Enter Your School Name or Postcode</h2>
+                <h2>Please Enter Your School Name</h2>
                 <input
                     type="text"
-                    placeholder="Please enter you school postcode"
+                    placeholder="Search for your school..."
                     value={formData.schoolSearch}
                     onChange={(event) =>
                         setFormData({ ...formData, schoolSearch: event.target.value })

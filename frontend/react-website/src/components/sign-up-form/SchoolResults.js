@@ -88,9 +88,9 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
             <div className='body'>
                 <h2>Select Your School From the List Below</h2>
-                { loading ? 
+                <div className='details'>{ loading ? 
                  <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Schools List</FormLabel>
+                    <FormLabel id="radio-buttons-group-label">Search Results</FormLabel>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue=""
@@ -108,11 +108,12 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
                     </RadioGroup>
             
                     </FormControl>
-                    : <h3>Loading...</h3> }                        
+                    : <h3>Loading...</h3> } 
+                </div>                       
                     
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
-                <p>if you can't see your school listed please check your details and search again.</p>
+                <p className='message'>if you can't see your school listed please check your details and search again.</p>
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>
