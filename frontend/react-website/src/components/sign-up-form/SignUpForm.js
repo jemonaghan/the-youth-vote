@@ -32,6 +32,17 @@ function Form() {
         return <Validate formData={formData} setFormData={setFormData} />;
       }
     };
+
+    const doFetch = async () => {
+      const res = await fetch('http://localhost:5000/school/register/add', {
+        body: JSON.stringify({urn: '987656', numberOfPollcards: 10 }),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(await (res.json()))
+    }
   
     return (
       <div className="sign-up-form">
@@ -55,14 +66,15 @@ function Form() {
               Prev
             </button>
             <button
-              onClick={() => {
-                if (page === FormTitles.length - 1) {
-                  alert("FORM SUBMITTED");
-                  console.log(formData);
-                } else {
-                  setPage((currPage) => currPage + 1);
-                }
-              }}
+              // onClick={() => {
+              //   if (page === FormTitles.length - 1) {
+              //     alert("FORM SUBMITTED");
+              //     console.log(formData);
+              //   } else {
+              //     setPage((currPage) => currPage + 1);
+              //   }
+              // }}
+              onClick={doFetch}
             >
               {page === FormTitles.length - 1 ? "Submit" : "Next"}
             </button>
