@@ -12,6 +12,7 @@ function Form() {
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
         schoolSearch: "",
+        urn: "",
         schoolName: "",
         postcode: "",
         pollCardNum: "",
