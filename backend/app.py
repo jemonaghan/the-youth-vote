@@ -1,8 +1,7 @@
-from distutils.log import error
-from flask import Flask, jsonify, request, Response
+
+from flask import Flask, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
-from db_utils import get_voter_info
 from flask_cors import CORS
 import requests
 import json
@@ -12,8 +11,10 @@ CORS(app)
 
 # jemilla config
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
+
 # joanne config
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+
 # rana config
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:cfg-password!@localhost:3306/youth_vote2"
 
@@ -21,10 +22,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 # check the connection is working
 @app.route("/")
 def api_homepage():
     return ("Welcome to the api")
+
 
 # take number of pollcards and send to db
 
@@ -32,7 +35,6 @@ def api_homepage():
 def create_pollcard():
     if request.method == 'POST':
         json_data = request.json
-        # addData = pollcard(url=json_data.get('url'), numberOfPollcards=json_data.get('number_pollcards'))
         new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), json_data.get('numberOfPollcards'))
     return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards 
 
@@ -47,13 +49,15 @@ def add_pollcards_db(urn, num, start_id=1):
     return pollcard_numbers
      
 
-
+#turns the id into a four digits
 def get_id(id, required_length=4):
-    id = str(id+1)
+    id = str(id)
     length = len(id)
     zeros_needed = required_length - length
     zero = "0" * zeros_needed
     return zero + id 
+
+#Adds pollcards to a school that is on the database already
     
 @app.route("/school/register/add", methods = ['POST'])
 def add_pollcards():
@@ -69,9 +73,9 @@ def add_pollcards():
         
         pollcard = db.session.execute(query).scalars().first()
         num=json_data.get('numberOfPollcards')
-        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID)
+        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID + 1)
        
-    return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards needed
+    return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards
  
 
 class Pollcards(db.Model):
@@ -85,7 +89,7 @@ class Pollcards(db.Model):
 
 
 
-#route to add voter vote and send to db
+#route to add voter age and vote to db
 
 @app.route("/voter/vote", methods = ['POST'])
 def vote():
@@ -98,7 +102,7 @@ def vote():
 
 
 
-#backend route to check if pollcard number has been created and if the vote has been used
+#backend route to check if pollcard number exists and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
     
@@ -118,13 +122,12 @@ def matching_pollcard(pollcard):
 def has_voted(pollcard):
     return pollcard.vote is not None 
 
+#splits pollcard number into school_urn and voter_ID
 def get_urn(pollcard_id):
     return pollcard_id[0:6]
 
 def get_voter_id(pollcard_id):
     return pollcard_id[6:10]
-
-
 
 
 

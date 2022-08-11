@@ -58,8 +58,20 @@ function Form() {
             return <h1>Sorry there has been an error please refresh the page</h1>;
         }
     };
+
+    const doFetch = async () => {
+      const res = await fetch('http://localhost:5000/school/register/add', {
+        body: JSON.stringify({urn: '987656', numberOfPollcards: 10 }),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(await (res.json()))
+    }
   
     return (
+
         <div className="sign-up-form">
             <motion.div className="form-container"
                 animate={{ scale: 1}}
