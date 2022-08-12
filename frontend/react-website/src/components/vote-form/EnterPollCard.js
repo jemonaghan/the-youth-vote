@@ -20,7 +20,7 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
     const getVote = async (num) => {
         try {
             const response = await axios.get(
-                'http://127.0.0.1:5000/voter/pollcard/<pollcard_id>', {
+                'http://localhost:5000/voter/pollcard/<pollcard_id>', {
                 params: {
                     v: Number(num)                  
                 }}

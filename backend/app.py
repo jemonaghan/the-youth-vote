@@ -97,7 +97,7 @@ def pollcard_check(pollcard_id):
     if matching_pollcard(pollcard) and not has_voted(pollcard):
         return success('Exists no vote')
 
-    if matching_pollcard(pollcard) and has_voted(pollcard):
+    elif matching_pollcard(pollcard) and has_voted(pollcard):
         return error('This pollcard has already been used', 400)
 
     return error("A pollcard with this number cannot be found", 404)
