@@ -1,4 +1,5 @@
-use youth_vote2;
+CREATE DATABSE youth_vote;
+
 CREATE TABLE Pollcards (
 school_urn INTEGER,
 voter_ID INTEGER unsigned NOT NULL,
