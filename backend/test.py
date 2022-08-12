@@ -42,31 +42,8 @@ class TestPollcardMethods(unittest.TestCase):
         self.assertEqual(get_voter_id("1231230012"),"0012")
 
 
-
-
-    # def test_create_pollcard_returns_success_if_created(self):
-    #     with self.assertRaises(success):
-    #         create_pollcard(123123, 20)
-    
     def test_get_id_returns_id_plus_zeros(self):
         self.assertEqual(get_id(12, 4),"0012")
-
-
-    # def test_pollcard_check_if_number_in_db(self):
-    #     self.assertEqual(pollcard_check(1231230012),1231230012)
-    
-    # def test_pollcard_check_raises_error_if_number_not_in_db(self):
-    #     with self.assertRaises(Exception):
-    #         (pollcard_check(1231230013()))
-
-    
-    # def test_add_pollcards_db_is_correct_number(self): 
-    #     self.assertEqual(add_pollcards_db(123123, 1)1231230001)
-
-    # def test_add_pollcards(self):
-
-
-    # def test_vote_submits_vote(self):
 
 
 if __name__ == '__main__':
