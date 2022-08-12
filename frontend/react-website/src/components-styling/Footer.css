@@ -1,0 +1,31 @@
+.footer {
+    background-color: grey;
+    min-height: 60px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5px 20px;
+}
+
+.two-stack{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.foot-link{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.foot-link:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+}

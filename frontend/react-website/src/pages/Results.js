@@ -1,9 +1,13 @@
-import React from 'react';
-  
+import React from "react";
+
+import BarChart from "../components/BarChart";
+
 const Results = () => {
   return (
-    <h1>The RESULTS ARE IN!</h1>
+    <div class="results-page">
+      <BarChart />
+    </div>
   );
 };
-  
+
 export default Results;

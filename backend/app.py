@@ -10,7 +10,10 @@ from config import HOST, USER, PASSWORD, PORT, DB_NAME, PROTOCOL
 app = Flask(__name__)
 CORS(app)
 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
+
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -90,11 +93,13 @@ def vote():
 #backend route to check if pollcard number exists and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
+
+    pollcard_id = request.args.get('v')
     
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     
     if matching_pollcard(pollcard) and not has_voted(pollcard):
-        return success({ 'hasVoted': False })
+        return success('Exists no vote')
 
     if matching_pollcard(pollcard) and has_voted(pollcard):
         return error('This pollcard has already been used', 400)
@@ -120,9 +125,10 @@ def get_voter_id(pollcard_id):
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
-    schools_by_postcode = get_school_info(query, 'address.postcode')
+#     schools_by_postcode = get_school_info(query, 'address.postcode')
     schools_by_name = get_school_info(query, 'name')
-    data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+#     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+    data = schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)
     return success(data)

@@ -1,79 +1,94 @@
 import React, { useState } from 'react';
-import { motion } from "framer-motion";
-import voterInfo from "../../utils/voterdata.json"
+import axios from 'axios';
 
-// poll card num for testing
-// 110907-000000
+import ContinueButton from '../buttons/ContinueButton';
+
 
 function EnterPollCard({formData, setFormData, page, setPage}) {
+
     
     const [errorMessage, setErrorMessage] = useState("");
+    const [searchVote, setSearchVote] = useState( [] );
 
-    const voterData = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
-    const voterNumber = voterData.toString();
 
-    const voterData2 = voterInfo.data.map(({ vote }) =>  vote);
-    const voterChoice = voterData2.toString();
+    function checkPollCard (event){
+        getVote(event.target.value)
+        setFormData({ ...formData, pollCardNum: event.target.value })
+    };
+
+
+    const getVote = async (num) => {
+        try {
+            const response = await axios.get(
+                'http://127.0.0.1:5000/voter/pollcard/<pollcard_id>', {
+                params: {
+                    v: Number(num)                  
+                }}
+            )
+            setSearchVote(response.data)
+        }
+        catch (error) {
+            console.log("Can't find in Database")
+        }
+    };
+   
 
     function continueForward () {
-        
-        // console.log((voterNumber))
-        // console.log(formData.pollCardNum)
-
-        if (voterNumber === formData.pollCardNum && voterChoice === "") {
+        getVote()
+        // pollcard number is in database and voter has NOT voted
+        if (searchVote === 'Exists no vote') {
             console.log("match, no vote")
             setPage(page + 1)
-        } else if (voterNumber === formData.pollCardNum && voterChoice === "1") {
-            console.log("match, voted")
-            setPage(page - 1)
         }
+
+        // pollcard number is in database and voter HAS voted
+        else if (searchVote === 'This pollcard has already been used'){
+            console.log("match, voted")
+            setPage(page + 1)
+        }
+        
+        // pollcard number is not in database
         else {
             console.log("no match")
             setErrorMessage("Sorry that number is not recognised")
         }
-    };
+    }
+    
   
     return (
         <div>
             <div className='header'>
-                <h1>Step: 1 Poll Card</h1>
+                <h1>Step 1: Poll Card</h1>
             </div>
-            <motion.div className='body'
-                animate={{ opacity: 1}}
-                initial={{ opacity: 0}}
-                transition={{delay: 0.8}}>
+
+            <div className='body'>
                 <h2>Please Enter Your Poll Card Number</h2>
 
-                {/* <form> */}
                 <input
                     type="text"
                     placeholder='XXXXXX-XXXXXX'
                     defaultValue={formData.pollCardNum}
-                    onChange={(event) =>
-                        setFormData({ ...formData, pollCardNum: event.target.value })
-                        }
+                    onChange={checkPollCard}
                 />
+                
+                <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
 
-                <button onClick={continueForward}>
-                    Continue
-                </button>
-                {/* </form> */}
-            <p>{errorMessage}</p>
-            </motion.div>
+                <p className='message'>{errorMessage}</p>
+                
+            </div>
 
-            <motion.div className='footer-headers'
-                animate={{ y: 0}}
-                initial={{ y: -250}}
-                transition={{delay: 0.6}}>
+            <div className='footer-headers'>
+
                 <div className='header inactive'>
                     <h1>Step 2: Age</h1>
                 </div>
                 <div className='header inactive'>
                     <h1>Step 3: Vote</h1>
                 </div>
-            </motion.div>
+
+            </div>
         </div>
-  );
+    );
 }
 
 export default EnterPollCard

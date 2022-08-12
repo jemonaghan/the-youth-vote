@@ -13,15 +13,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-footer{
-  background-color: grey;
-  min-height: 20px;
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
