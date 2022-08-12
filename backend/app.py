@@ -105,6 +105,8 @@ def vote():
 #backend route to check if pollcard number exists and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
+
+    pollcard_id = request.args.get('v')
     
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     

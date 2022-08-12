@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 // Components
 import ContinueButton from '../buttons/ContinueButton'
 import BackButton from '../buttons/BackButton';
@@ -6,8 +7,25 @@ import BackButton from '../buttons/BackButton';
 function ConfirmChoice({formData, page, setPage}) {
     
     function continueForward () {
-        
-        //need post to send form data to the database
+
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:5000/voter/vote',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            data: {
+                vote: formData.voteChoice,
+                age: Number(formData.age),
+                voter_id: Number(formData.pollCardNum)                
+            },
+          })
+          .then(function (response) {
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         
         setPage(page + 1)
     };

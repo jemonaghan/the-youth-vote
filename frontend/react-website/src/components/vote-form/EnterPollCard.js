@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import ContinueButton from '../buttons/ContinueButton';
 
@@ -9,16 +10,98 @@ import voterInfo from "../../data/voterdata.json";
 // 110907-000000
 
 function EnterPollCard({formData, setFormData, page, setPage}) {
-    
-    const [errorMessage, setErrorMessage] = useState("");
 
-    const numberCheck = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
-    
-    let i = numberCheck.indexOf(formData.pollCardNum)
+    // useEffect(() => {
+    //     getVote()
+    //   }, [])   
 
-    const voteCheck = voterInfo.data.map(({ hasVoted }) =>  hasVoted );
+
+    // const [searchVote, setSearchVote] = useState( [] );
+    // const [loading, setLoading] = useState(false)
+
+
+    // const getVote = async () => {
+    //     try {
+    //         const response = await axios.get(
+    //             'http://127.0.0.1:5000/voter/pollcard/<pollcard_id>', {
+    //             params: {
+    //                 v: Number(formData.pollCardNum)                  
+    //             }}
+    //         )
+    //         setSearchVote(response.data)
+    //         console.log(response.data)
+    //         setLoading(true)
+    //     }
+    //     catch (error) {
+    //         alert('Error')
+    //     }
+    // }
+
+    // const [resultArray, setResultArray] = useState([]);
+    
+    // useEffect(() => {
+    //     const expensesListResp = async () => {
+    //         await axios.get('http://127.0.0.1:5000/voter/pollcard/<pollcard_id>', {params: {
+    //             v: Number(formData.pollCardNum)}                  
+    //           })
+    //         .then(response => setResultArray(response.data))
+    //         }
+        
+    //         expensesListResp();
+    //     }, []);
+
+
+    // axios({
+    //     method: 'get',
+    //     url: 'http://127.0.0.1:5000/voter/pollcard/<pollcard_id>',
+    //     params: {
+    //       v: Number(formData.pollCardNum)                  
+    //     }
+    //   })
+    //   .then(function (response) {
+    //     console.log(response.data);      
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    
+    // const [errorMessage, setErrorMessage] = useState("");
+
+    // const numberCheck = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
+    
+    // let i = numberCheck.indexOf(formData.pollCardNum)
+
+    // const voteCheck = voterInfo.data.map(({ hasVoted }) =>  hasVoted );
 
     function continueForward () {
+
+    // useEffect(() => {
+    //     getVote()
+    //   }, [])   
+
+
+    // const [searchVote, setSearchVote] = useState( [] );
+    // const [loading, setLoading] = useState(false)
+
+
+    // const getVote = async () => {
+    //     try {
+    //         const response = await axios.get(
+    //             'http://127.0.0.1:5000/voter/pollcard/<pollcard_id>', {
+    //             params: {
+    //                 v: Number(formData.pollCardNum)                  
+    //             }}
+    //         )
+    //         setSearchVote(response.data)
+    //         console.log(response.data)
+    //         setLoading(true)
+    //     }
+    //     catch (error) {
+    //         alert('Error')
+    //     }
+    // }
+
         
         //need axios here to check the entered pollcard number and whether or not the voter has voted
 
@@ -62,7 +145,7 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
                 <p>(numbers for testing) - </p>
                 <p>hasn't voted - 110907-000000</p>
                 <p>has voted - 110907-111111</p>
-                <p>{errorMessage}</p>
+                {/* <p>{errorMessage}</p> */}
             </div>
 
             <div className='footer-headers'>

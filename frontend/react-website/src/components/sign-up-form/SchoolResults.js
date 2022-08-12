@@ -7,15 +7,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-
-// static school data for testing
-import schoolsData from "../../data/content.json";
-
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
-import useFetch from "../../utils/useFetch";
 
 
 function SchoolResults({formData, setFormData, page, setPage, event}) {
@@ -64,7 +57,7 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
         let i = listUrns.indexOf(formData.urn)
 
-        setFormData({ ...formData, schoolName: listNames[i], postcode: listPostcode[i] });
+        setFormData({ ...formData, schoolName: listNames[i], postcode: listPostcode[i], schoolUrn: listUrns[i] });
 
         console.log(formData)
     }
