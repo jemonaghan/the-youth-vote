@@ -5,17 +5,18 @@ from sqlalchemy import select
 from flask_cors import CORS
 import requests
 import json
+from config import HOST, USER, PASSWORD, PORT, DB_NAME, PROTOCOL
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 
-# take number of pollcards and send to db
+
 
 
 
@@ -37,7 +38,7 @@ def get_id(id, required_length=4):
     zero = "0" * zeros_needed
     return zero + id 
 
-#Adds pollcards to a school that is on the database already
+#Adds school and requested pollcards to db and adds extra if previously registered
     
 @app.route("/school/register", methods = ['POST'])
    
