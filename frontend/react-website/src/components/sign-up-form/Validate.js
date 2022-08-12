@@ -8,7 +8,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
 
 
     function updateData (info){
-        setPollcards(info)
+        setPollcards(info);
     }
 
 
@@ -26,9 +26,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
             },
         })
             .then(response => {
-                // console.log(response.data.newPollcardNumbers);
-                let newData = response.data.newPollcardNumbers
-                // console.log(newData)
+                let newData = response.data.newPollcardNumbers;
                 updateData(newData);
             })
             .catch(function (error) {
@@ -39,13 +37,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
 
     function continueForward () {     
         sendGetRequest()
-        // console.log(pollcards)
-        if (pollcards == []) {
-            console.log('Error')
-        }
-        else{
-            setPage(page + 1)
-        }
+        setPage(page + 1)
     }
 
     function goBack () {
@@ -73,7 +65,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
                 </div>
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Confirm" />
-
+                {pollcards}
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>                

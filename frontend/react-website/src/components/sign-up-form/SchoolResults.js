@@ -87,7 +87,7 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
                     {errorMessage}
                     { loading ? 
                     <h3>Loading...</h3> :
-                    <FormControl>
+                    <FormControl data-testid="show-data">
                         <FormLabel id="radio-buttons-group-label">Search Results</FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"

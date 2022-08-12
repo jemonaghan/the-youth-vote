@@ -1,4 +1,4 @@
-CREATE DATABSE youth_vote;
+CREATE DATABASE youth_vote;
 
 CREATE TABLE Pollcards (
 school_urn INTEGER,
