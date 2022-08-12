@@ -17,12 +17,6 @@ db = SQLAlchemy(app)
 
 # take number of pollcards and send to db
 
-@app.route("/school/register", methods = ['POST'])
-def create_pollcard():
-    if request.method == 'POST':
-        json_data = request.json
-        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), json_data.get('numberOfPollcards'))
-    return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards 
 
 
 def add_pollcards_db(urn, num, start_id=1):
@@ -45,7 +39,8 @@ def get_id(id, required_length=4):
 
 #Adds pollcards to a school that is on the database already
     
-@app.route("/school/register/add", methods = ['POST'])
+@app.route("/school/register", methods = ['POST'])
+   
 def add_pollcards():
     if request.method == 'POST':
         json_data = request.json
@@ -56,12 +51,15 @@ def add_pollcards():
                 order_by(Pollcards.voter_ID.desc())
         )
         print(query)
-        
+    
         pollcard = db.session.execute(query).scalars().first()
+        start_id = 1 if not matching_pollcard(pollcard) else pollcard.voter_ID +1
         num=json_data.get('numberOfPollcards')
-        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), num, pollcard.voter_ID + 1)
+        new_pollcard_numbers = add_pollcards_db(json_data.get('urn'), num, start_id)
        
     return success({"message": "Pollcards created", "newPollcardNumbers": new_pollcard_numbers })#download of pollcards
+
+
  
 
 class Pollcards(db.Model):
