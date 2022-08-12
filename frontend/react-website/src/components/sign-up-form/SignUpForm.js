@@ -10,6 +10,7 @@ import SignUpThankYou from './ThankYou';
 
 function Form() {
     const [page, setPage] = useState(0);
+    const [pollcards, setPollcards] = useState([]);
     const [formData, setFormData] = useState({
         schoolSearch: "",
         urn: "",
@@ -44,6 +45,7 @@ function Form() {
             return <Validate 
                 formData={formData} setFormData={setFormData} 
                 page={page} setPage={setPage}
+                pollcards={pollcards} setPollcards={setPollcards}
             />;
         } 
 
@@ -51,6 +53,7 @@ function Form() {
             return <SignUpThankYou 
                 formData={formData} setFormData={setFormData} 
                 page={page} setPage={setPage}
+                pollcards={pollcards} setPollcards={setPollcards}
             />;
         } 
 

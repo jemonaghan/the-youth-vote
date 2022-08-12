@@ -1,14 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
 
-function Validate({ formData, page, setPage }) {
+function Validate({ formData, page, setPage, pollcards, setPollcards }) {
 
-    function continueForward () {     
-    
+
+    function updateData (info){
+        setPollcards(info)
+    }
+
+
+    function sendGetRequest () {
+
         axios({
             method: 'post',
             url: 'http://127.0.0.1:5000/school/register',
@@ -19,15 +24,28 @@ function Validate({ formData, page, setPage }) {
                 numberOfPollcards: Number(formData.pollCardNum),
                 urn: formData.schoolUrn       
             },
-          })
-          .then(function (response) {
-            console.log(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        })
+            .then(response => {
+                // console.log(response.data.newPollcardNumbers);
+                let newData = response.data.newPollcardNumbers
+                // console.log(newData)
+                updateData(newData);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
-        setPage(page + 1)
+
+    function continueForward () {     
+        sendGetRequest()
+        // console.log(pollcards)
+        if (pollcards == []) {
+            console.log('Error')
+        }
+        else{
+            setPage(page + 1)
+        }
     }
 
     function goBack () {
@@ -55,7 +73,7 @@ function Validate({ formData, page, setPage }) {
                 </div>
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Confirm" />
-                
+
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>                
