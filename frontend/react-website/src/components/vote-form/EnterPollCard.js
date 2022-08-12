@@ -66,14 +66,14 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
                 <input
                     type="text"
-                    placeholder='XXXXXX-XXXXXX'
+                    placeholder='XXXXXXXXXX'
                     defaultValue={formData.pollCardNum}
                     onChange={checkPollCard}
                 />
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
 
-                <p className='message'>{errorMessage}</p>
+                <p className='message' id="pollcard-error">{errorMessage}</p>
                 
             </div>
 

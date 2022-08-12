@@ -48,12 +48,13 @@ function Age({formData, setFormData, page, setPage}) {
             <input
                 type="number"
                 placeholder='XX'
+                data-testid="age-input"
                 onChange={(event) =>
                     setFormData({ ...formData, age: event.target.value })
                     }
             />
 
-            < ContinueButton onClick={continueForward} buttonLabel="Continue"/>
+            < ContinueButton onClick={continueForward} buttonLabel="Continue" />
             </form>
             <div className='back'>
                 <BackButton onClick={goBack} buttonLabel="< Back"/>
