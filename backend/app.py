@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # jemilla config
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:NANOdegree22@localhost:3306/youth_vote"
 
 # joanne config
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Saxophone1!@localhost:3306/youth_vote2"
@@ -111,7 +111,7 @@ def pollcard_check(pollcard_id):
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     
     if matching_pollcard(pollcard) and not has_voted(pollcard):
-        return success({ 'hasVoted': False })
+        return success('Exists no vote')
 
     if matching_pollcard(pollcard) and has_voted(pollcard):
         return error('This pollcard has already been used', 400)
