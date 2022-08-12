@@ -20,7 +20,8 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
 
     const [searchResults, setSearchResults] = useState( [] );
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [errorMessage, setErrorMessage] = useState("")
 
 
     const getSchoolResults = async () => {
@@ -33,10 +34,11 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
             )
             setSearchResults(response.data)
             console.log(response.data)
-            setLoading(true)
+            setLoading(false)
         }
         catch (error) {
-            alert('Error')
+            setErrorMessage("Please refresh the page")
+            console.log("Error accessing the API")
         }
     } 
 
@@ -81,27 +83,30 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
             <div className='body'>
                 <h2>Select Your School From the List Below</h2>
-                <div className='details'>{ loading ? 
-                 <FormControl>
-                    <FormLabel id="radio-buttons-group-label">Search Results</FormLabel>
-                    <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue=""
-                        name="radio-buttons-group"
-                        onChange={setUrn}
-                    >
-                         
-                        {searchResults.map((searchResults) => 
-                        <FormControlLabel 
-                        value={searchResults.urn} 
-                        control={<Radio />} 
-                        label={`${searchResults.name}, ${searchResults.address.postcode}`} 
-                                    />)}
-                        
-                    </RadioGroup>
-            
+                <div className='details'>
+                    {errorMessage}
+                    { loading ? 
+                    <h3>Loading...</h3> :
+                    <FormControl>
+                        <FormLabel id="radio-buttons-group-label">Search Results</FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue=""
+                            name="radio-buttons-group"
+                            onChange={setUrn}
+                        >
+                            
+                            {searchResults.map((searchResults) => 
+                            <FormControlLabel 
+                            value={searchResults.urn} 
+                            control={<Radio />} 
+                            label={`${searchResults.name}, ${searchResults.address.postcode}`} 
+                                        />)}
+                            
+                        </RadioGroup>
+                
                     </FormControl>
-                    : <h3>Loading...</h3> } 
+                    } 
                 </div>                       
                     
                 

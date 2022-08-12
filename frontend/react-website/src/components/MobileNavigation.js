@@ -1,5 +1,5 @@
 import React from "react";
-import '../components-styling/NavBar_module.css';
+import '../components-styling/NavBar.css';
 import NavLinks from './NavLinks';
 import { CgMenu } from 'react-icons/cg';
 import { CgClose } from 'react-icons/cg';
