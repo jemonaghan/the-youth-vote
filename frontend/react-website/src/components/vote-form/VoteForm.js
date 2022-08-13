@@ -1,5 +1,3 @@
-import "../../components-styling/Forms.css";
-
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 
@@ -9,6 +7,8 @@ import VoteChoice from "./VoteChoice";
 import ConfirmChoice from "./ConfirmChoice";
 import VoteThankYou from "./ThankYou";
 import RepeatVote from "./Repeat";
+
+import "../../components-styling/Forms.css";
 
 
 function VotingForm () {

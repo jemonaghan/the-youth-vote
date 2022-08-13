@@ -7,6 +7,9 @@ import PollCards from './PollCards';
 import Validate from './Validate';
 import SignUpThankYou from './ThankYou';
 
+import "../../components-styling/Forms.css";
+
+
 
 function Form() {
     const [page, setPage] = useState(0);

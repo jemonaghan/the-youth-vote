@@ -1,8 +1,8 @@
 import React from 'react';
-import  '../components-styling/Footer.css';
 import { FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+import  '../components-styling/Footer.css';
 
 function Footer() {
   

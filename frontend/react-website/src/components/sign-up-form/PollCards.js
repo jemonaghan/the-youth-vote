@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from "framer-motion";
+
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
 
@@ -26,12 +28,20 @@ function PollCards({ formData, setFormData, page, setPage }) {
             <div className='header inactive'>
                 <h1>Step 1: School</h1>
             </div>
-            <div className='header'>
+            <motion.div className='header'
+                animate={{ y: 0}}
+                initial={{ y: 360}}
+                transition={{delay: 0.2, type: "inertia "}}
+            >
                 <h1>Step 2: Poll Cards</h1>
-            </div>
+            </motion.div>
 
-            <div className='body'>
+            <motion.div className='body'
+                animate={{ opacity: 1}}
+                initial={{ opacity: 0}}
+                transition={{delay: 0.4}}>
                 <h2>How Many Poll Cards Does Your School Need?</h2>
+                <p>1 pollcard = 1 student vote</p>
             <input  
                 type="text"
                 placeholder="0 - 150"
@@ -44,7 +54,7 @@ function PollCards({ formData, setFormData, page, setPage }) {
             <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>
-            </div>
+            </motion.div>
 
             <div className='footer-headers'>
 

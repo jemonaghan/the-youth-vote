@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// Components
+
 import ContinueButton from '../buttons/ContinueButton'
 import BackButton from '../buttons/BackButton';
 
