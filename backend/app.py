@@ -1,6 +1,6 @@
 from flask import Flask, request, Response
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select
+from sqlalchemy import select, update, and_
 from flask_cors import CORS
 import requests
 import json
@@ -76,13 +76,16 @@ class Pollcards(db.Model):
 
 #route to add voter age and vote to db
 
-@app.route("/voter/vote", methods = ['POST'])
-def vote():
+@app.route("/voter/vote/<pollcard_id>", methods = ['POST'])
+def vote(pollcard_id):
     if request.method == 'POST':
         json_data = request.json
-        pollcard_number = json_data.get("pollcard_id")
-        addData = Pollcards(school_urn=get_urn(pollcard_number), voter_ID=get_voter_id(pollcard_number), vote=json_data.get("vote"), age=json_data.get("age"))
-        db.session.add(addData)
+        sql_query = (
+            update(Pollcards).
+            where(and_(Pollcards.school_urn == get_urn(pollcard_id), Pollcards.voter_ID == get_voter_id(pollcard_id))).
+            values(age = json_data.get("age"), vote = json_data.get("vote"))
+        )
+        db.session.execute(sql_query)
         db.session.commit()
     return success("Vote submitted")
 
@@ -98,7 +101,7 @@ def pollcard_check(pollcard_id):
     if matching_pollcard(pollcard) and not has_voted(pollcard):
         return success('Exists no vote')
 
-    elif matching_pollcard(pollcard) and has_voted(pollcard):
+    if matching_pollcard(pollcard) and has_voted(pollcard):
         return error('This pollcard has already been used', 400)
 
     return error("A pollcard with this number cannot be found", 404)
