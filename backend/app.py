@@ -1,6 +1,6 @@
 from flask import Flask, request, Response
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select
+from sqlalchemy import select, update, and_
 from flask_cors import CORS
 import requests
 import json
@@ -16,6 +16,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 
 
 
@@ -75,12 +76,16 @@ class Pollcards(db.Model):
 
 #route to add voter age and vote to db
 
-@app.route("/voter/vote", methods = ['POST'])
-def vote():
+@app.route("/voter/vote/<pollcard_id>", methods = ['POST'])
+def vote(pollcard_id):
     if request.method == 'POST':
         json_data = request.json
-        addData = Pollcards(school_urn=json_data.get('urn'), voter_ID=get_id(id), vote=json_data.get("vote"), age=json_data.get("age"))
-        db.session.add(addData)
+        sql_query = (
+            update(Pollcards).
+            where(and_(Pollcards.school_urn == get_urn(pollcard_id), Pollcards.voter_ID == get_voter_id(pollcard_id))).
+            values(age = json_data.get("age"), vote = json_data.get("vote"))
+        )
+        db.session.execute(sql_query)
         db.session.commit()
     return success("Vote submitted")
 
@@ -89,15 +94,13 @@ def vote():
 #backend route to check if pollcard number exists and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
-
-    pollcard_id = request.args.get('v')
     
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     
     if matching_pollcard(pollcard) and not has_voted(pollcard):
         return success('Exists no vote')
 
-    elif matching_pollcard(pollcard) and has_voted(pollcard):
+    if matching_pollcard(pollcard) and has_voted(pollcard):
         return error('This pollcard has already been used', 400)
 
     return error("A pollcard with this number cannot be found", 404)
@@ -121,9 +124,9 @@ def get_voter_id(pollcard_id):
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
-#     schools_by_postcode = get_school_info(query, 'address.postcode')
+    schools_by_postcode = get_school_info(query, 'address.postcode')
     schools_by_name = get_school_info(query, 'name')
-#     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+    data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
     data = schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)
@@ -138,6 +141,14 @@ def success(data):
 
 def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
+
+
+
+# check the api is working
+@app.route("/")
+def connectionCheck():
+    return ("Welcome to the api")
+
 
 
 if __name__ == "__main__":

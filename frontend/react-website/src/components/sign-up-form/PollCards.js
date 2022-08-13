@@ -1,8 +1,11 @@
 import React from 'react';
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
+import {useState} from 'react';
 
 function PollCards({ formData, setFormData, page, setPage }) {
+
+    const [errorMessage, setErrorMessage] = useState("");
     
     function continueForward () {
         if (parseInt(formData.pollCardNum) > 0 && parseInt(formData.pollCardNum) <= 150) {
@@ -10,9 +13,11 @@ function PollCards({ formData, setFormData, page, setPage }) {
         }
         else if (parseInt(formData.pollCardNum) < 0 || parseInt(formData.pollCardNum > 150)){
             console.log("Request need to be between 0 - 150")
+            setErrorMessage('The number of poll cards need to be between 0 - 150')
         }
         else {
             console.log("Error - input needs to be numeric")
+            setErrorMessage('Please insert a number between 0 and 150')
         }
             
     }
@@ -40,6 +45,7 @@ function PollCards({ formData, setFormData, page, setPage }) {
                     setFormData({ ...formData, pollCardNum: event.target.value })
                 }   
             />
+            <p className='message' id="pollcard-error">{errorMessage}</p>
             <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
             <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>

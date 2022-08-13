@@ -28,6 +28,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
             .then(response => {
                 let newData = response.data.newPollcardNumbers;
                 updateData(newData);
+                console.log(newData);
             })
             .catch(function (error) {
                 console.log(error);

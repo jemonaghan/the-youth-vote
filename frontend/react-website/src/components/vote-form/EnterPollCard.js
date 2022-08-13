@@ -17,15 +17,14 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
     };
 
 
-    const getVote = async (num) => {
+    const getVote = async () => {
         try {
+            let pollcard_id = Number(formData.pollCardNum)
             const response = await axios.get(
-                'http://localhost:5000/voter/pollcard/<pollcard_id>', {
-                params: {
-                    v: Number(num)                  
-                }}
+                'http://localhost:5000/voter/pollcard/' + pollcard_id
             )
             setSearchVote(response.data)
+            console.log(searchVote)
         }
         catch (error) {
             console.log("Can't find in Database")

@@ -6,10 +6,18 @@
 # PORT = 3306
 # PROTOCOL = "mysql"
 
-#jemilla
+# #jemilla
+# HOST = "localhost"
+# USER = "root"
+# PASSWORD = "NANOdegree22"
+# DB_NAME = "youth_vote"
+# PORT = 3306
+# PROTOCOL = "mysql"
+
+#rana
 HOST = "localhost"
 USER = "root"
-PASSWORD = "NANOdegree22"
-DB_NAME = "youth_vote"
+PASSWORD = "cfg-password!"
+DB_NAME = "youth_vote2"
 PORT = 3306
 PROTOCOL = "mysql"
