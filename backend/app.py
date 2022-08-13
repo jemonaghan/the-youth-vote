@@ -80,7 +80,8 @@ class Pollcards(db.Model):
 def vote():
     if request.method == 'POST':
         json_data = request.json
-        addData = Pollcards(school_urn=json_data.get('urn'), voter_ID=get_id(id), vote=json_data.get("vote"), age=json_data.get("age"))
+        pollcard_number = json_data.get("pollcard_id")
+        addData = Pollcards(school_urn=get_urn(pollcard_number), voter_ID=get_voter_id(pollcard_number), vote=json_data.get("vote"), age=json_data.get("age"))
         db.session.add(addData)
         db.session.commit()
     return success("Vote submitted")
@@ -91,7 +92,6 @@ def vote():
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
 
-    pollcard_id = request.args.get('v')
     
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     
