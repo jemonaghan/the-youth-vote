@@ -1,7 +1,7 @@
 import React from "react";
-import NavLinks from './NavLinks';
 import { ClassNames } from '@emotion/react';
 
+import NavLinks from './NavLinks';
 
 
 const Navigation = () => {

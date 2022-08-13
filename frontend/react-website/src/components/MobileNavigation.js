@@ -1,10 +1,12 @@
-import React from "react";
-import '../components-styling/NavBar.css';
-import NavLinks from './NavLinks';
+import React, { useState } from "react";
+
 import { CgMenu } from 'react-icons/cg';
 import { CgClose } from 'react-icons/cg';
-import {useState } from 'react';
 import { ClassNames } from "@emotion/react";
+
+import NavLinks from './NavLinks';
+
+import '../components-styling/NavBar.css';
 
 
   
