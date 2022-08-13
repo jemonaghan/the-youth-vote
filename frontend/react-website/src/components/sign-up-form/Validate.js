@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { motion } from "framer-motion";
 
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
@@ -52,11 +53,19 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
             <div className='header inactive'>
                 <h1>Step 2: Poll Cards</h1>
             </div>
-            <div className='header'>
+            <motion.div className='header'
+                animate={{ y: 0}}
+                initial={{ y: 360}}
+                transition={{delay: 0.2, type: "inertia "}}
+            >
                 <h1>Step 3: Confirm</h1>
-            </div>
+            </motion.div>
 
-            <div className='body'>
+            <motion.div className='body'
+                animate={{ opacity: 1}}
+                initial={{ opacity: 0}}
+                transition={{delay: 0.4}}
+            >
                 <h2>Please Check All the Details Are Correct</h2>
                 <div className='details'>
                     <p>School Name: {formData.schoolName}</p>
@@ -69,7 +78,7 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>                
-            </div>
+            </motion.div>
 
         </div>
     );

@@ -19,6 +19,7 @@ db = SQLAlchemy(app)
 
 
 
+
 def add_pollcards_db(urn, num, start_id=1):
     pollcard_numbers = []
     for id in range(start_id, num + start_id):
@@ -138,6 +139,14 @@ def success(data):
 
 def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
+
+
+
+# check the api is working
+@app.route("/")
+def connectionCheck():
+    return ("Welcome to the api")
+
 
 
 if __name__ == "__main__":
