@@ -12,7 +12,6 @@ import "../components-styling/BarChart.css";
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const BarChart = () => {
-  const [errorMessage, setErrorMessage] = useState("");
   const [chartData, setChartData] = useState({});
   const [haveData, setHaveData] = useState(false);
 
@@ -84,7 +83,6 @@ const BarChart = () => {
           <h2>This is How the Youth Voted</h2>
         </div>
         <div className="body">
-          {errorMessage}
           <Bar data={chartData} height={400} options={options} />
         </div>
       </div>
