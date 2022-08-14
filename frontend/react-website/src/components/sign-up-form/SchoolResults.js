@@ -49,12 +49,16 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
     function oneSchoolData () {
 
+        if (!formData.urn){
+            return alert ("Please pick a school before you continue") 
+        }
+
         const listUrns = searchResults.map((searchResults) => 
         searchResults.urn)
-
+        
         const listNames = searchResults.map((searchResults) => 
         searchResults.name)
-
+        
         const listPostcode = searchResults.map((searchResults) => 
         searchResults.address.postcode)
 
@@ -68,9 +72,11 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
     function continueForward () {
         oneSchoolData()
-        setPage(page + 1)
+        if (formData.urn){
+            setPage(page + 1)
+        }
     }
-
+    
     function goBack () {
         setPage(page - 1)
     }
