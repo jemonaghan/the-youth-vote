@@ -12,7 +12,6 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
 
     function checkPollCard (event){
-        getVote(event.target.value)
         setFormData({ ...formData, pollCardNum: event.target.value })
     };
 
