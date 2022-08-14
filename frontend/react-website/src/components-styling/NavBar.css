@@ -31,7 +31,6 @@
 .NavBar a:hover {
     text-decoration: none;
     color: white;
-    background-color: #FF8702;
     color: black;
     
 }
@@ -79,9 +78,12 @@
     color: black;
 }
 
-
 .NavBar .MobileNavigation {
     display: none;
+}
+
+.active{
+    background-color: #fff;
 }
 
 @media (max-width: 990px) {

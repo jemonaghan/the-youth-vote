@@ -1,8 +1,6 @@
-
 from distutils.log import error
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
-from db_utils import get_voter_info
 from flask import Flask, request, Response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select, create_engine
@@ -168,10 +166,6 @@ def fetchresults():
             result = engine.execute("SELECT vote, COUNT(*) AS 'amount' FROM pollcards GROUP BY (vote)")
             return jsonify({"result": [dict(row) for row in result]})
 
-# check the api is working
-@app.route("/")
-def connectionCheck():
-    return ("Welcome to the api")
 
 
 if __name__ == "__main__":
