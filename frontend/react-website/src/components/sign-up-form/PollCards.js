@@ -13,7 +13,7 @@ function PollCards({ formData, setFormData, page, setPage }) {
         if (parseInt(formData.pollCardNum) > 0 && parseInt(formData.pollCardNum) <= 150) {
             setPage(page + 1)
         }
-        else if (parseInt(formData.pollCardNum) < 0 || parseInt(formData.pollCardNum > 150)){
+        else if (parseInt(formData.pollCardNum) < 0 || parseInt(formData.pollCardNum) > 150){
             console.log("Request need to be between 0 - 150")
             setErrorMessage('The number of poll cards need to be between 0 - 150')
         }
