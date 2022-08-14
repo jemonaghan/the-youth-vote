@@ -14,20 +14,20 @@ function Age({formData, setFormData, page, setPage}) {
         if (formData.age > 10 && formData.age < 18) {
             setPage(page + 1)
         }
-        else if (formData.age < 10 ){
+        else if (formData.age > 0 && formData.age <= 10 ){
             console.log("voter is too young")
-            setErrorMessage('The voter is too young, you must be between 10 and 18 yearls old.')
+            setErrorMessage('The voter is too young, you must be between 11 and 17 yearls old.')
         }
-        else if (formData.age > 18 ){
+        else if (formData.age >= 18 ){
             console.log("voter is too old")
-            setErrorMessage('The voter is too old, you must be between 10 and 18 yearls old.')
+            setErrorMessage('The voter is too old, you must be between 11 and 17 yearls old.')
         }
         else {
             console.log("error in user input, input must be int")
             setErrorMessage('Please enter your age in a numeric format')
         }
     }
-
+    
     function goBack () {
         setPage(page - 1)
     }
