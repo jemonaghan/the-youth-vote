@@ -13,17 +13,15 @@ import BackButton from '../buttons/BackButton';
 
 function SchoolResults({formData, setFormData, page, setPage, event}) {
 
-
     useEffect(() => {
         getSchoolResults()
-      }, [])   
-
-
+      }, [])
+      
+      
     const [searchResults, setSearchResults] = useState( [] );
     const [loading, setLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
-    const [errorMessageSelection, setErrorMessageSelection] = useState("")
-
+    
 
     const getSchoolResults = async () => {
         try {
@@ -41,11 +39,13 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
             setErrorMessage("Please refresh the page")
             console.log("Error accessing the API")
         }
-    } 
-
+    }
+    
+    
     function setUrn (event) {
         setFormData({ ...formData, urn: event.target.value })
     }
+
 
     function oneSchoolData () {
 
@@ -61,33 +61,27 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
         let i = listUrns.indexOf(formData.urn)
 
         setFormData({ ...formData, schoolName: listNames[i], postcode: listPostcode[i], schoolUrn: listUrns[i] });
-
+        
         console.log(formData)
     }
      
 
     function continueForward () {
         oneSchoolData()
-        if (formData.schoolName === "") {
-            console.log('No selection')
-            setErrorMessageSelection('Please select your school on the list')
-        }
-        else {
-            setPage(page + 1)
-        }
+        setPage(page + 1)
     }
 
     function goBack () {
         setPage(page - 1)
     }
   
+
     return (
         <div>
             
             <div className='header'>
                 <h1>Step 1: School</h1>
             </div>
-
             <div className='body'>
                 <h2>Select Your School From the List Below</h2>
                 <div className='details'>
@@ -115,29 +109,23 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
                     </FormControl>
                     } 
                 </div>                       
-                    
-                
+
+
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
-                <p className='message' id="error">{errorMessageSelection}</p>
                 <p className='message'>If you can't see your school listed please check your details and search again.</p>
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>
             </div>
-
             <div className='footer-headers'>
-
                 <div className='header inactive'>
                     <h1>Step 2: Poll Cards</h1>
                 </div>
                 <div className='header inactive'>
                     <h1>Step 3: Confirm</h1>
                 </div>
-
             </div>
-
         </div>
     );
 }
-
 export default SchoolResults
