@@ -1,10 +1,15 @@
+
 from distutils.log import error
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from db_utils import get_voter_info
+from flask import Flask, request, Response, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select, create_engine
 from flask_cors import CORS
 import requests
 import json
+from config import HOST, USER, PASSWORD, PORT, DB_NAME, PROTOCOL
 
 app = Flask(__name__)
 CORS(app)
@@ -18,10 +23,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+
 # check the connection is working
 @app.route("/")
 def api_homepage():
     return ("Welcome to the api")
+
+#create engine
+engine = create_engine(f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}")
+connection = engine.connect()
+
 
 # take number of pollcards and send to db
 
@@ -112,6 +123,15 @@ def success(data):
 def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
 
+
+# fetch school results
+
+@app.route("/results", methods=['GET'])
+def fetchresults():
+        if request.method == 'GET':
+            
+            result = engine.execute("SELECT vote, COUNT(*) AS 'amount' FROM pollcards GROUP BY (vote)")
+            return jsonify({"result": [dict(row) for row in result]})
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
