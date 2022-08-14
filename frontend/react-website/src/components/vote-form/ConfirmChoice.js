@@ -55,8 +55,10 @@ function ConfirmChoice({formData, page, setPage}) {
                     <p>VOTE: {formData.voteChoice}</p>
                 </div>
                 
+                <div className='confirm'>
                 <ContinueButton onClick={continueForward} buttonLabel="Confirm"/>
-                
+                </div>
+
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>

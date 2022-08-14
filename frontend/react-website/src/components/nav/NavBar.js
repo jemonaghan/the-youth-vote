@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import logo from "../images/logo-orange.png"
+import logo from "../../images/logo-orange.png"
 import Navigation from "./Navigation";
 import MobileNavigation from "./MobileNavigation";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../components-styling/NavBar.css";
+import "../../components-styling/NavBar.css";
 
 
 function getWindowDimensions() {

@@ -74,8 +74,10 @@ function Validate({ formData, page, setPage, pollcards, setPollcards }) {
                     <p>Poll Cards: {formData.pollCardNum}</p>
                 </div>
                 
+                <div className='confirm'>
                 <ContinueButton onClick={continueForward} buttonLabel = "Confirm" />
-                {pollcards}
+                </div>
+                
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>                
