@@ -1,12 +1,7 @@
-from distutils.log import error
+
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, request, Response, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select, create_engine
-from flask import Flask, request, Response
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select, update, and_
+from sqlalchemy import select, create_engine, update, and_
 from flask_cors import CORS
 import requests
 import json
@@ -27,15 +22,8 @@ db = SQLAlchemy(app)
 engine = create_engine(f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}")
 connection = engine.connect()
 
-# check the connection is working
-@app.route("/")
-def api_homepage():
-    return ("Welcome to the api")
-
 
 # take number of pollcards and send to db
-
-
 def add_pollcards_db(urn, num, start_id=1):
     pollcard_numbers = []
     for id in range(start_id, num + start_id):
@@ -55,9 +43,7 @@ def get_id(id, required_length=4):
     return zero + id 
 
 #Adds school and requested pollcards to db and adds extra if previously registered
-    
-@app.route("/school/register", methods = ['POST'])
-   
+@app.route("/school/register", methods = ['POST'])   
 def add_pollcards():
     if request.method == 'POST':
         json_data = request.json
