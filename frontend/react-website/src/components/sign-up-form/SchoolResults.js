@@ -22,6 +22,7 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
     const [searchResults, setSearchResults] = useState( [] );
     const [loading, setLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
+    const [errorMessageSelection, setErrorMessageSelection] = useState("")
 
 
     const getSchoolResults = async () => {
@@ -67,7 +68,13 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
 
     function continueForward () {
         oneSchoolData()
-        setPage(page + 1)
+        if (formData.schoolName === "") {
+            console.log('No selection')
+            setErrorMessageSelection('Please select your school on the list')
+        }
+        else {
+            setPage(page + 1)
+        }
     }
 
     function goBack () {
@@ -111,7 +118,8 @@ function SchoolResults({formData, setFormData, page, setPage, event}) {
                     
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
-                <p className='message'>if you can't see your school listed please check your details and search again.</p>
+                <p className='message' id="error">{errorMessageSelection}</p>
+                <p className='message'>If you can't see your school listed please check your details and search again.</p>
                 <div className='back'>
                     <BackButton onClick={goBack} buttonLabel="< Back"/>
                 </div>

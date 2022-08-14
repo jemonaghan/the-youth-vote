@@ -1,11 +1,20 @@
-import React from 'react'
+import React from 'react';
+import {useState} from 'react';
 
 import ContinueButton from '../buttons/ContinueButton';
 
 function SchoolEnter({formData, setFormData, page, setPage}) {
+
+    const [errorMessage, setErrorMessage] = useState("");
     
     function continueForward () {
-        setPage(page + 1)
+        if (formData.schoolSearch === "") {
+            console.log('Field is empty')
+            setErrorMessage('Please enter your school name')
+        }
+        else {
+            setPage(page + 1)
+        }
     }
 
     return (
@@ -24,6 +33,7 @@ function SchoolEnter({formData, setFormData, page, setPage}) {
                         setFormData({ ...formData, schoolSearch: event.target.value })
                         }
                 />
+                <p className='message' id="error">{errorMessage}</p>
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
             </div>
 
