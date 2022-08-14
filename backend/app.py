@@ -1,3 +1,11 @@
+
+from distutils.log import error
+from flask import Flask, jsonify, request, Response
+from flask_sqlalchemy import SQLAlchemy
+from db_utils import get_voter_info
+from flask import Flask, request, Response, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select, create_engine
 from flask import Flask, request, Response
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select, update, and_
@@ -17,7 +25,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+#create engine
+engine = create_engine(f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}")
+connection = engine.connect()
 
+# check the connection is working
+@app.route("/")
+def api_homepage():
+    return ("Welcome to the api")
+
+
+# take number of pollcards and send to db
 
 
 def add_pollcards_db(urn, num, start_id=1):
@@ -142,12 +160,18 @@ def get_school_info(query, field):
     return requests.get(f'https://api.maptivo.co.uk/schools?{field}={query}&fields=urn,address,name', headers={ 'x-apikey': '1234' })
 
 
+# fetch school results
+@app.route("/results", methods=['GET'])
+def fetchresults():
+        if request.method == 'GET':
+            
+            result = engine.execute("SELECT vote, COUNT(*) AS 'amount' FROM pollcards GROUP BY (vote)")
+            return jsonify({"result": [dict(row) for row in result]})
 
 # check the api is working
 @app.route("/")
 def connectionCheck():
     return ("Welcome to the api")
-
 
 
 if __name__ == "__main__":
