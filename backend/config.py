@@ -22,9 +22,9 @@ PROTOCOL = "mysql"
 # PROTOCOL = "mysql"
 
 #rana
-HOST = "localhost"
-USER = "root"
-PASSWORD = "cfg-password!"
+# HOST = "localhost"
+# USER = "root"
+# PASSWORD = "cfg-password!"
 
 
 
