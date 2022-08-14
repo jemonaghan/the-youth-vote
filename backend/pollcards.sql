@@ -10,7 +10,7 @@ vote VARCHAR(128),
 primary key(school_urn, voter_ID)
 );
 
--- add test values
+-- (optional) add test values
 -- voter that hasn't voted (pollcard ID = 12341234)
-insert into Pollcards (school_urn, voter_ID)
-VALUES (123456, 1234);
+-- insert into Pollcards (school_urn, voter_ID)
+-- VALUES (123456, 1234);

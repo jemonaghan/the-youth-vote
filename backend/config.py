@@ -16,12 +16,12 @@
 # PROTOCOL = "mysql"
 
 #jemilla
-HOST = "localhost"
-USER = "root"
-PASSWORD = "NANOdegree22"
-DB_NAME = "youth_vote"
-PORT = 3306
-PROTOCOL = "mysql"
+# HOST = "localhost"
+# USER = "root"
+# PASSWORD = "NANOdegree22"
+# DB_NAME = "youth_vote"
+# PORT = 3306
+# PROTOCOL = "mysql"
 
 #alex
 # HOST = "localhost"
@@ -38,4 +38,3 @@ PROTOCOL = "mysql"
 # DB_NAME = "youth_vote"
 # PORT = 3306
 # PROTOCOL = "mysql"
-
