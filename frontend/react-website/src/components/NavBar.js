@@ -1,46 +1,41 @@
-import "../components-styling/NavBar.css"
+import React, { useState, useEffect } from "react";
+
+import logo from "../images/logo-orange.png"
+import Navigation from "./Navigation";
+import MobileNavigation from "./MobileNavigation";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import "../components-styling/NavBar.css";
 
 
-function Navbar() {
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+const Navbar = () => {
+
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    useEffect(() => {
+        function handleResize() {
+          setWindowDimensions(getWindowDimensions());
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
+      
   return (
-    <nav className="nav-bar">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <>
-            &nbsp;
-            </>
-            </div>
-            <div className="row">
-              <div className="col-9 text-left">
-              <Link to="/home" className="navbar-logo">
-                The Youth Vote
-              </Link>
-              </div>
-              <div className="col-1 text-center">
-              <Link to="/vote"className="nav-link">Vote</Link>
-              </div>
-              <div className="col-1 text-center">
-              <Link to="/results" className="nav-link">Results</Link>
-              </div>
-              <div className="col-1 text-center">
-              <Link to="/sign-up"className="nav-link">Sign Up</Link>
-              </div>
-              <div className="row">
-              <div className="col-12">
-                <>
-                &nbsp;
-                </>
-              </div>
-            </div>
-            </div>
+    <div className="NavBar">
+        {windowDimensions.width < "990" ? <MobileNavigation />: <Navigation />}
+
+        <div className="nav-logo">
+            <a href="/"><img src={logo} alt="the youth vote logo" /></a>
         </div>
-      </div>
-      </nav>
-      )
+    </div>
+  );
 }
 export default Navbar;
+

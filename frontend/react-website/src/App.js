@@ -9,7 +9,7 @@ import NoPage from "./pages/NoPage";
 import LearnMore from "./pages/Learn";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './App.css';
 
 
 export default function App() {

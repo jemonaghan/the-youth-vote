@@ -1,11 +1,54 @@
-nav{
-    background-color: #ED028C;
-    min-height: 80px;
-    text-align: right;
+.NavBar {
+    background: #ED028C;
+    height: 80px;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
 }
 
-nav a {
-    padding: 5px 20px;
+.NavBar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.NavBar nav ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+.NavBar nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.NavBar a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF8702;
+    color: black;
+    
+}
+
+.nav-logo{
+    width: 120px;
+    position: absolute;
+    left: 2rem;
+    top: 0;
+}
+
+.nav-logo img{
+    width: 100%;
+}
+
+.nav-logo a:hover{
+    background-color: #ED028C;
 }
 
 .navbar-logo {
@@ -24,7 +67,7 @@ nav a {
 
 .nav-link {
     text-decoration: none;
-    font-size: 18pt;
+    font-size: 1.2rem;
     font-weight: bold;
     color: black;
 }
@@ -36,3 +79,47 @@ nav a {
     color: black;
 }
 
+
+.NavBar .MobileNavigation {
+    display: none;
+}
+
+@media (max-width: 990px) {
+    .NavBar .Navigation {
+        display: none;
+    }
+    .NavBar .MobileNavigation {
+        display: flex;
+        align-items: center;
+    }
+    .NavBar .MobileNavigation .Hamburger {
+        position: absolute;
+        right: 5%;
+        cursor: pointer;
+    }
+    .NavBar nav ul {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        color: whitesmoke;
+        background: #ED028C;
+    }
+    .NavBar nav ul li {
+        padding-left: 80%;
+    }
+    .NavBar {
+        opacity: 1;
+    }
+    .NavBar a:hover {
+        border-bottom: none;
+        color: black;
+        background-color: #FF8702;
+    }
+    .nav-logo a:hover{
+        background-color: #ED028C;
+    }
+
+}

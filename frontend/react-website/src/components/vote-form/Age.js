@@ -1,18 +1,33 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import { useState } from 'react';
 
 import ContinueButton from '../buttons/ContinueButton';
 import BackButton from '../buttons/BackButton';
 
 
 function Age({formData, setFormData, page, setPage}) {
+
+    const [errorMessage, setErrorMessage] = useState("");
   
     function continueForward () {
-        if (formData.age > 10 && formData.age < 18)
+        if (formData.age > 10 && formData.age < 18) {
             setPage(page + 1)
-            // console.log(formData)
+        }
+        else if (formData.age > 0 && formData.age <= 10 ){
+            console.log("voter is too young")
+            setErrorMessage('The voter is too young, you must be between 11 and 17 yearls old.')
+        }
+        else if (formData.age >= 18 ){
+            console.log("voter is too old")
+            setErrorMessage('The voter is too old, you must be between 11 and 17 yearls old.')
+        }
+        else {
+            console.log("error in user input, input must be int")
+            setErrorMessage('Please enter your age in a numeric format')
+        }
     }
-
+    
     function goBack () {
         setPage(page - 1)
     }
@@ -39,12 +54,13 @@ function Age({formData, setFormData, page, setPage}) {
             <input
                 type="number"
                 placeholder='XX'
+                data-testid="age-input"
                 onChange={(event) =>
                     setFormData({ ...formData, age: event.target.value })
                     }
             />
-
-            < ContinueButton onClick={continueForward} buttonLabel="Continue"/>
+            <p className='message' id="pollcard-error">{errorMessage}</p>
+            < ContinueButton onClick={continueForward} buttonLabel="Continue" />
             </form>
             <div className='back'>
                 <BackButton onClick={goBack} buttonLabel="< Back"/>

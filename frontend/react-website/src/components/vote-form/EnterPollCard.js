@@ -1,43 +1,55 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import ContinueButton from '../buttons/ContinueButton';
 
-// static poll card number for testing
-import voterInfo from "../../data/voterdata.json";
-
-// poll card number for testing
-// 110907-000000
 
 function EnterPollCard({formData, setFormData, page, setPage}) {
+
     
     const [errorMessage, setErrorMessage] = useState("");
 
-    const numberCheck = voterInfo.data.map(({ pollCardNum }) => pollCardNum);
-    
-    let i = numberCheck.indexOf(formData.pollCardNum)
 
-    const voteCheck = voterInfo.data.map(({ hasVoted }) =>  hasVoted );
+    function checkPollCard (event){
+        setFormData({ ...formData, pollCardNum: event.target.value })
+    };
 
-    function continueForward () {
-        
-        //need axios here to check the entered pollcard number and whether or not the voter has voted
 
+    const getVote = async () => {
+        try {
+            let pollcard_id = Number(formData.pollCardNum)
+            const response = await axios.get(
+                'http://localhost:5000/voter/pollcard/' + pollcard_id
+            )
+            return response.data
+        }
+        catch (error) {
+            console.log("Can't find in Database")
+        }
+    };
+   
+
+    async function continueForward () {
+        const searchVote = await getVote()
         // pollcard number is in database and voter has NOT voted
-        if (numberCheck.includes(formData.pollCardNum) === true && voteCheck[i] === 0) {
+        if (searchVote === 'Exists no vote') {
             console.log("match, no vote")
             setPage(page + 1)
-        } 
-        // pollcard number is in database and voter HAS voted
-        else if (numberCheck.includes(formData.pollCardNum) === true && voteCheck[i] === 1) {
-            console.log("match, voted")
-            setPage(page - 1)
         }
+
+        // pollcard number is in database and voter HAS voted
+        else if (searchVote === 'This pollcard has already been used'){
+            console.log("match, voted")
+            setPage(page + 1)
+        }
+        
         // pollcard number is not in database
         else {
             console.log("no match")
             setErrorMessage("Sorry that number is not recognised")
         }
-    };
+    }
+    
   
     return (
         <div>
@@ -50,19 +62,15 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
                 <input
                     type="text"
-                    placeholder='XXXXXX-XXXXXX'
+                    placeholder='XXXXXXXXXX'
                     defaultValue={formData.pollCardNum}
-                    onChange={(event) =>
-                        setFormData({ ...formData, pollCardNum: event.target.value })
-                        }
+                    onChange={checkPollCard}
                 />
                 
                 <ContinueButton onClick={continueForward} buttonLabel = "Continue" />
 
-                <p>(numbers for testing) - </p>
-                <p>hasn't voted - 110907-000000</p>
-                <p>has voted - 110907-111111</p>
-                <p>{errorMessage}</p>
+                <p className='message' id="pollcard-error">{errorMessage}</p>
+                
             </div>
 
             <div className='footer-headers'>

@@ -7,11 +7,16 @@ import PollCards from './PollCards';
 import Validate from './Validate';
 import SignUpThankYou from './ThankYou';
 
+import "../../components-styling/Forms.css";
+
+
 
 function Form() {
     const [page, setPage] = useState(0);
+    const [pollcards, setPollcards] = useState([]);
     const [formData, setFormData] = useState({
         schoolSearch: "",
+        urn: "",
         schoolName: "",
         postcode: "",
         pollCardNum: "",
@@ -43,6 +48,7 @@ function Form() {
             return <Validate 
                 formData={formData} setFormData={setFormData} 
                 page={page} setPage={setPage}
+                pollcards={pollcards} setPollcards={setPollcards}
             />;
         } 
 
@@ -50,6 +56,7 @@ function Form() {
             return <SignUpThankYou 
                 formData={formData} setFormData={setFormData} 
                 page={page} setPage={setPage}
+                pollcards={pollcards} setPollcards={setPollcards}
             />;
         } 
 
@@ -57,8 +64,10 @@ function Form() {
             return <h1>Sorry there has been an error please refresh the page</h1>;
         }
     };
-  
+
+    
     return (
+
         <div className="sign-up-form">
             <motion.div className="form-container"
                 animate={{ scale: 1}}
