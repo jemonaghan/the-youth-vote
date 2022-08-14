@@ -8,7 +8,6 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
 
     
     const [errorMessage, setErrorMessage] = useState("");
-    const [searchVote, setSearchVote] = useState( [] );
 
 
     function checkPollCard (event){
@@ -22,8 +21,7 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
             const response = await axios.get(
                 'http://localhost:5000/voter/pollcard/' + pollcard_id
             )
-            setSearchVote(response.data)
-            console.log(searchVote)
+            return response.data
         }
         catch (error) {
             console.log("Can't find in Database")
@@ -31,8 +29,8 @@ function EnterPollCard({formData, setFormData, page, setPage}) {
     };
    
 
-    function continueForward () {
-        getVote()
+    async function continueForward () {
+        const searchVote = await getVote()
         // pollcard number is in database and voter has NOT voted
         if (searchVote === 'Exists no vote') {
             console.log("match, no vote")
