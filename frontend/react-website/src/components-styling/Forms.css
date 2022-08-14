@@ -100,6 +100,12 @@
     bottom: 1rem;
 }
 
+.form-container .body .confirm{
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+}
+
 .form-container .footer{
     display: flex;
     justify-content: center;

@@ -6,7 +6,7 @@ import { ClassNames } from "@emotion/react";
 
 import NavLinks from './NavLinks';
 
-import '../components-styling/NavBar.css';
+import '../../components-styling/NavBar.css';
 
 
   
