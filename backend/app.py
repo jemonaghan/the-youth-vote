@@ -124,10 +124,9 @@ def get_voter_id(pollcard_id):
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
-#     schools_by_postcode = get_school_info(query, 'address.postcode')
+    schools_by_postcode = get_school_info(query, 'address.postcode')
     schools_by_name = get_school_info(query, 'name')
-#     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
-    data = schools_by_name.json()['data']
+    data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)
     return success(data)
