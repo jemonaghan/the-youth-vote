@@ -10,7 +10,7 @@ function SchoolEnter({formData, setFormData, page, setPage}) {
     function continueForward () {
         if (formData.schoolSearch === "") {
             console.log('Field is empty')
-            setErrorMessage('Please enter your school name')
+            setErrorMessage('Please enter your school name or school postcode')
         }
         else {
             setPage(page + 1)
@@ -24,7 +24,7 @@ function SchoolEnter({formData, setFormData, page, setPage}) {
             </div>
 
             <div className='body'>
-                <h2>Please Enter Your School Name</h2>
+                <h2>Please Enter Your School Name or Postcode</h2>
                 <input
                     type="text"
                     placeholder="Search for your school..."
