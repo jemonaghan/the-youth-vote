@@ -7,7 +7,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import axios from "axios";
-
 import "../components-styling/BarChart.css";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
@@ -73,7 +72,6 @@ const BarChart = () => {
     },
   };
 
-<<<<<<< HEAD
   if (!haveData) {
     return <div>Loading data...</div>;
   } else {
@@ -92,21 +90,6 @@ const BarChart = () => {
       </div>
     );
   }
-=======
-  return (
-    <div className="results-container">
-      <div className="header">
-        <h1>The Results</h1>
-      </div>      
-      <div className="sub-header">
-        <h2>This is How the Youth Voted</h2>
-      </div>
-      <div className="body">
-          <Bar data={state} height={400} options={options} />
-      </div>
-    </div>
-  );
->>>>>>> 08c7d7592a3f6a313dc088b1d0a144f94b11c2cb
 };
 
 export default BarChart;
