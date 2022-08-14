@@ -8,16 +8,17 @@ function ConfirmChoice({formData, page, setPage}) {
     
     function continueForward () {
 
+        let pollcard_id = formData.pollCardNum;
+
         axios({
             method: 'post',
-            url: 'http://127.0.0.1:5000/voter/vote',
+            url: 'http://127.0.0.1:5000/voter/vote/' + pollcard_id,
             headers: {
                 'Content-Type': 'application/json'
                 },
             data: {
                 vote: formData.voteChoice,
-                age: Number(formData.age),
-                voter_id: Number(formData.pollCardNum)                
+                age: Number(formData.age)                                              
             },
           })
           .then(function (response) {

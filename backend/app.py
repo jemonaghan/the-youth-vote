@@ -94,7 +94,6 @@ def vote(pollcard_id):
 #backend route to check if pollcard number exists and if the vote has been used
 @app.route("/voter/pollcard/<pollcard_id>")
 def pollcard_check(pollcard_id):
-
     
     pollcard = Pollcards.query.get((get_urn(pollcard_id), get_voter_id(pollcard_id)))
     
@@ -125,9 +124,9 @@ def get_voter_id(pollcard_id):
 @app.route("/school/find")
 def get_school():
     query = request.args.get('v')
-    schools_by_postcode = get_school_info(query, 'address.postcode')
+#     schools_by_postcode = get_school_info(query, 'address.postcode')
     schools_by_name = get_school_info(query, 'name')
-    data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
+#     data = schools_by_postcode.json()['data'] + schools_by_name.json()['data']
     data = schools_by_name.json()['data']
     if (len(data) == 0):
         return error('Schools not found!', 404)

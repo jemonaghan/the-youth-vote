@@ -1,9 +1,7 @@
 import React from 'react';
 
-
 function SignUpThankYou({ pollcards }) {
-
-
+  
     return (
         <div className='final'>
             <div className='body'>
