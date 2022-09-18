@@ -24,6 +24,12 @@ engine = create_engine(f"{PROTOCOL}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 connection = engine.connect()
 
 
+# confirm connection setup
+@app.route("/")   
+def connection_check():
+    return ("Connection Working")
+
+
 # take number of pollcards and send to db
 def add_pollcards_db(urn, num, start_id=1):
     pollcard_numbers = []

@@ -7,14 +7,14 @@ Susan Bailey, Rana Khoury, Alexandra Lavin, Joanne Monaghan, and Jemilla Scotten
 Our website is an online voting web application with the aim of encouraging young people to vote.
 
 ## Setting up
-To aviod clashes of dependencies we recommend you first set up a virtual environment to run the project within information on how to do this can be found here https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
+To avoid clashes of dependencies we recommend you first set up a virtual environment to run the project within. Information on how to do this can be found here https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
 
 ### Configuring the SQL database
 1. Run the SQL script given in the file `\backend\pollcards.sql` to initalise your database
 2. Configure the options within the `\backend\config.py` file to match your database settings
 
 ### Starting the backend
-In the terminal
+In the terminal:
 (activate the virtual environment)
 1. Navigate to `\backend`
 2. install dependencies by running `pip install -r requirements.txt`
@@ -22,7 +22,7 @@ In the terminal
 (This will run on localhost:5000)
 
 ### Running the frontend
-Once your other configurations are complete, in a separate terminal
+Once your other configurations are complete, in a separate terminal:
 (activate the virtual environment)
 1. Navigate to `\frontend\react-website`
 2. run `npm install`
