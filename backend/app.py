@@ -1,16 +1,12 @@
 from distutils.log import error
 from flask import Flask, jsonify, request, Response
+from sqlalchemy import select, create_engine, update, and_
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, request, Response, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select, create_engine
-from flask import Flask, request, Response
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import select, update, and_
 from flask_cors import CORS
 import requests
 import json
 from config import HOST, USER, PASSWORD, PORT, DB_NAME, PROTOCOL
+
 
 app = Flask(__name__)
 CORS(app)
